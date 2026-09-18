@@ -23,7 +23,7 @@ const photoGalleryData = [
   { file: "img_1046.jpg", date: "August 11, 2026", caption: "August bliss & turning 22 soon! 🎂" }
 ];
 
-// 22 Things I Love About You (First 4 explicitly requested by Jackson)
+// 22 Things I Love About You (All of Jackson's personal reasons)
 const reasonsData = [
   {
     num: 1,
@@ -47,115 +47,115 @@ const reasonsData = [
     num: 4,
     icon: "🥂",
     title: "Always Having a Good Time",
-    text: "Your natural ability to light up any room, be the sweetest social butterfly, and make every single outing so fun."
+    text: "Your natural ability to make every outing fun, light up any room, and be the sweetest social butterfly."
   },
   {
     num: 5,
-    icon: "📺",
-    title: "Our Show Binges",
-    text: "Watching Lost, Paradise, and Limitless together and breaking down every single mystery like detectives."
+    icon: "😂",
+    title: "You Never Fail to Make Me Laugh",
+    text: "No matter what kind of day it has been, you can always make me laugh until my stomach hurts."
   },
   {
     num: 6,
-    icon: "🍿",
-    title: "The YouTube Brothers",
-    text: "Bingeing that chaotic YouTube brother duo for 5 hours straight in bed with snacks—elite comfort behavior."
+    icon: "🗺️",
+    title: "Always Down for an Adventure",
+    text: "Whether it is a spontaneous road trip, a new spot, or random plan, you are always down for an adventure with me."
   },
   {
     num: 7,
-    icon: "💎",
-    title: "Your Sims Energy",
-    text: "Typing 'motherlode' energy into everything you do. Sul Sul! (And promise, no removing pool ladders!)."
+    icon: "🌊",
+    title: "Swimming in the Waves",
+    text: "Splashing around in the ocean and swimming in the waves with my girl is one of my all-time favorite memories."
   },
   {
     num: 8,
-    icon: "😂",
-    title: "Our Inside Jokes",
-    text: "How we can exchange a single look from across the room and start hysterically laughing."
+    icon: "🔥",
+    title: "You're Fine As Shit AF",
+    text: "Respectfully (and disrespectfully)... you are fine as shit af. The baddest and most beautiful girl in every room, no debate."
   },
   {
     num: 9,
-    icon: "🚗",
-    title: "Late Night Drives",
-    text: "Windows down, singing terribly at the top of our lungs with the music turned all the way up."
+    icon: "🎵",
+    title: "Your Contagious Laugh",
+    text: "Your laugh is genuinely the most contagious sound in the world. As soon as you start giggling, I can't help but smile."
   },
   {
     num: 10,
-    icon: "🤍",
-    title: "Your Kind Heart",
-    text: "The genuine empathy, gentleness, and kindness you show toward every single person and animal you meet."
+    icon: "🤝",
+    title: "Friends With My Friends",
+    text: "How effortlessly you became friends with my friends—it felt so natural and means the absolute world to me."
   },
   {
     num: 11,
-    icon: "🧠",
-    title: "Your Quick Wit",
-    text: "Operating on 100% NZT-48 capacity at all times. You're brilliant, sharp, and always keep me on my toes."
+    icon: "🌟",
+    title: "A True People Person",
+    text: "You are such a natural people person. You have this warm, magnetic energy where literally everyone loves you."
   },
   {
     num: 12,
-    icon: "📸",
-    title: "Photogenic Queen",
-    text: "Looking through our 16 camera roll highlights and realizing you look effortlessly stunning in literally every single photo."
+    icon: "🤍",
+    title: "Being Part of Your World",
+    text: "I love being a part of your life, spending time with your friends, and getting to know your amazing family."
   },
   {
     num: 13,
-    icon: "🏡",
-    title: "Feeling Like Home",
-    text: "Wherever we are in the world, being next to you feels completely safe, warm, and like home."
+    icon: "💆‍♀️",
+    title: "Giving My Girl Rubbies",
+    text: "Giving you rubbies when you are relaxing or unwinding—taking care of my girl is one of my favorite things."
   },
   {
     num: 14,
-    icon: "🧁",
-    title: "Your Sweet Tooth",
-    text: "How excited you get over sweet treats, ice cream, and pastries. Seeing you happy is my favorite hobby."
+    icon: "🗣️",
+    title: "Your Story Time",
+    text: "I love listening to your story time! The expressions, the drama, the voice tones, and all the tea—you're the best storyteller."
   },
   {
     num: 15,
-    icon: "🎶",
-    title: "Your Music Taste",
-    text: "Every track you put on immediately becomes a staple on our daily playlists."
+    icon: "🍿",
+    title: "The Cruikshank Brothers",
+    text: "Watching Lucas and Jacob scream-laugh at YouTube videos for 5 hours straight in bed while eating snacks—elite comfort."
   },
   {
     num: 16,
-    icon: "💬",
-    title: "2 AM Conversations",
-    text: "Talking about our deepest dreams, childhood memories, and future plans until the middle of the night."
+    icon: "📺",
+    title: "Our Show Binges",
+    text: "Breaking down every mystery and conspiracy in Lost, Paradise, and Limitless together like detectives."
   },
   {
     num: 17,
-    icon: "🧸",
-    title: "Your Playful Side",
-    text: "Your cute little kitchen dances and spontaneous giggles that always turn my bad days into good ones."
+    icon: "💎",
+    title: "Your Sims Energy",
+    text: "Living life in pure 'motherlode' mode. Sul Sul! (And promise, the pool ladder is 100% safe today!)."
   },
   {
     num: 18,
-    icon: "🌟",
-    title: "Your Determination",
-    text: "How hard you work toward your goals and passions. Your drive inspires me every single day."
+    icon: "🚗",
+    title: "Late Night Drives",
+    text: "Singing at the top of our lungs with the windows down, feeling like the entire night belongs to us."
   },
   {
     num: 19,
-    icon: "🗺️",
-    title: "Every New Adventure",
-    text: "Packing a bag with zero itinerary and still having the most unforgettable time because I'm with you."
+    icon: "🏡",
+    title: "Feeling Like Home",
+    text: "Wherever we go, being next to you feels completely comfortable, safe, warm, and like home."
   },
   {
     num: 20,
-    icon: "🤝",
-    title: "My Best Friend",
-    text: "The first person I want to text good news to, and the only person I want to talk to when life gets crazy."
+    icon: "🫂",
+    title: "My Absolute Best Friend",
+    text: "The person I trust with every thought, dream, and secret. You are my favorite person in the entire universe."
   },
   {
     num: 21,
     icon: "💫",
     title: "Loving You Is Effortless",
-    text: "You make loving you the easiest, most natural, and most rewarding thing in the universe."
+    text: "You make loving you the easiest, most natural, and most rewarding thing in the world every single day."
   },
   {
     num: 22,
     icon: "🎉",
     title: "Celebrating 22 With You",
-    text: "Because as incredible as this year has been, I can't wait for all the years, birthdays, and memories still to come."
+    text: "Counting down every second to midnight on September 24th! Happy almost 22nd Birthday Abigail, I love you!"
   }
 ];
 
