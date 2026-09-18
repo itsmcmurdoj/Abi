@@ -181,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDailyUnlocking();
   renderAdventRoadmap();
   initAdminPreview();
+  initFloatingFaces();
 });
 
 /* ==========================================================================
@@ -857,4 +858,103 @@ function hideAdminBadge() {
   const badge = document.getElementById("adminBadge");
   if (badge) badge.style.display = "none";
 }
+
+/* ==========================================================================
+   Floating Circles of Abigail's Face
+   ========================================================================== */
+
+const abigailFaceList = [
+  "face_1.jpg", "face_2.jpg", "face_3.jpg", "face_4.jpg", "face_5.jpg",
+  "face_6.jpg", "face_7.jpg", "face_8.jpg", "face_9.jpg", "face_10.jpg",
+  "face_11.jpg", "face_12.jpg", "face_13.jpg", "face_14.jpg", "face_15.jpg",
+  "face_16.jpg", "face_17.jpg", "face_18.jpg", "face_19.jpg", "face_20.jpg",
+  "face_21.jpg", "face_22.jpg", "face_23.jpg"
+];
+
+const popQuotes = [
+  "Fine as shit af! 🔥",
+  "Sul Sul! 💎",
+  "Story time! ☕️",
+  "Lucas & Jacob mode! 🍿",
+  "Swimming in waves! 🌊",
+  "Best smile ever! 😊",
+  "NZT-48 Activated! 🧠",
+  "4 8 15 16 23 42! 🏝️",
+  "Rubbies approved! 💆‍♀️",
+  "Happy almost 22! 🎂",
+  "Morning coffee vibe! ☕️",
+  "Contagious laugh! 😂"
+];
+
+function initFloatingFaces() {
+  const container = document.getElementById("floatingFacesContainer");
+  if (!container) return;
+
+  const totalBubbles = 14;
+
+  for (let i = 0; i < totalBubbles; i++) {
+    createFloatingBubble(container, i, totalBubbles);
+  }
+}
+
+function createFloatingBubble(container, index, total) {
+  const bubble = document.createElement("div");
+  bubble.className = "floating-face-bubble";
+
+  const randomFace = abigailFaceList[Math.floor(Math.random() * abigailFaceList.length)];
+  const size = Math.floor(Math.random() * 35) + 55; // 55px to 90px
+  const leftPos = Math.random() * 90; // 0vw to 90vw
+  const duration = Math.random() * 10 + 14; // 14s to 24s
+  const delay = -(Math.random() * duration); // Stagger across screen immediately
+
+  bubble.style.width = `${size}px`;
+  bubble.style.height = `${size}px`;
+  bubble.style.left = `${leftPos}vw`;
+  bubble.style.animationDuration = `${duration}s`;
+  bubble.style.animationDelay = `${delay}s`;
+
+  bubble.innerHTML = `<img src="assets/images/faces/${randomFace}" alt="Abigail" loading="lazy" />`;
+
+  // Click interaction: pop with confetti & quote!
+  bubble.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (bubble.classList.contains("popping")) return;
+
+    bubble.classList.add("popping");
+
+    // Mini confetti burst at bubble location
+    if (typeof confetti === "function") {
+      const rect = bubble.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+      confetti({
+        origin: { x, y },
+        particleCount: 20,
+        spread: 45,
+        startVelocity: 18,
+        colors: ['#ff8fa3', '#e0838a', '#ffd166', '#ffffff']
+      });
+    }
+
+    // Floating text quote
+    const quoteText = popQuotes[Math.floor(Math.random() * popQuotes.length)];
+    const quoteEl = document.createElement("div");
+    quoteEl.className = "floating-quote-bubble";
+    quoteEl.textContent = quoteText;
+    const rect = bubble.getBoundingClientRect();
+    quoteEl.style.left = `${rect.left}px`;
+    quoteEl.style.top = `${rect.top}px`;
+    document.body.appendChild(quoteEl);
+    setTimeout(() => quoteEl.remove(), 1200);
+
+    // Respawn after animation
+    setTimeout(() => {
+      bubble.remove();
+      createFloatingBubble(container, index, total);
+    }, 400);
+  });
+
+  container.appendChild(bubble);
+}
+
 

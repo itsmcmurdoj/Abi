@@ -1722,3 +1722,96 @@ body {
   box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
   z-index: 100;
 }
+
+/* ==========================================================================
+   Floating Circles of Abigail's Face
+   ========================================================================== */
+.floating-faces-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 12;
+  overflow: hidden;
+}
+
+.floating-face-bubble {
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 20px rgba(214, 93, 108, 0.35), 0 0 12px rgba(255, 182, 193, 0.6);
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  will-change: transform;
+  animation: floatUpward linear infinite;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+}
+
+.floating-face-bubble img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.floating-face-bubble:hover {
+  transform: scale(1.4) rotate(10deg) !important;
+  box-shadow: 0 12px 30px rgba(214, 93, 108, 0.65), 0 0 20px rgba(255, 255, 255, 0.9);
+  z-index: 60;
+}
+
+.floating-face-bubble.popping {
+  animation: popDisappear 0.35s ease-out forwards !important;
+}
+
+@keyframes popDisappear {
+  0% { transform: scale(1.3); opacity: 1; }
+  50% { transform: scale(1.7); opacity: 0.8; }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes floatUpward {
+  0% {
+    transform: translateY(115vh) translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(85vh) translateX(25px) rotate(10deg);
+  }
+  50% {
+    transform: translateY(55vh) translateX(-20px) rotate(-8deg);
+  }
+  75% {
+    transform: translateY(25vh) translateX(20px) rotate(12deg);
+  }
+  100% {
+    transform: translateY(-25vh) translateX(-15px) rotate(-10deg);
+  }
+}
+
+.floating-quote-bubble {
+  position: absolute;
+  background: #ffffff;
+  color: var(--rose-dark);
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  pointer-events: none;
+  white-space: nowrap;
+  animation: floatUpAndFade 1.2s ease-out forwards;
+  z-index: 100;
+}
+
+@keyframes floatUpAndFade {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+  80% { transform: translateY(-30px) scale(1); opacity: 1; }
+  100% { transform: translateY(-50px) scale(0.9); opacity: 0; }
+}
