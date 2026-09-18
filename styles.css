@@ -1483,3 +1483,242 @@ body {
   color: #fff;
   cursor: pointer;
 }
+
+/* ==========================================================================
+   7-Day Advent Countdown Roadmap & Locking System
+   ========================================================================== */
+.advent-roadmap {
+  margin-top: 48px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.advent-header {
+  margin-bottom: 24px;
+}
+
+.advent-tag {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--primary-rose);
+  background: var(--rose-light);
+  padding: 4px 12px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.advent-title {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.advent-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.advent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.advent-card {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.advent-card.unlocked {
+  border-color: rgba(214, 93, 108, 0.5);
+  background: linear-gradient(135deg, #fff9fa 0%, #ffffff 100%);
+  box-shadow: 0 4px 14px rgba(214, 93, 108, 0.15);
+  cursor: pointer;
+}
+
+.advent-card.unlocked:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+}
+
+.advent-card.today {
+  border: 2px solid var(--primary-rose);
+  animation: todayGlow 2s infinite alternate;
+}
+
+@keyframes todayGlow {
+  0% { box-shadow: 0 0 10px rgba(214, 93, 108, 0.2); }
+  100% { box-shadow: 0 0 20px rgba(214, 93, 108, 0.5); }
+}
+
+.advent-card.locked {
+  opacity: 0.72;
+  background: rgba(250, 245, 246, 0.6);
+  cursor: not-allowed;
+}
+
+.advent-status-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.5px;
+}
+
+.advent-card.unlocked .advent-status-badge {
+  background: #e8f8f0;
+  color: #1b7a43;
+}
+
+.advent-card.today .advent-status-badge {
+  background: var(--rose-light);
+  color: var(--rose-dark);
+}
+
+.advent-card.locked .advent-status-badge {
+  background: #ede9ea;
+  color: #7d6e71;
+}
+
+.advent-date {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.advent-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  line-height: 1.25;
+}
+
+/* ==========================================================================
+   Locked Section Card Overlay
+   ========================================================================== */
+.daily-unlockable.is-locked .section-content-wrap {
+  display: none !important;
+}
+
+.locked-overlay-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  border: 2px dashed rgba(214, 93, 108, 0.4);
+  border-radius: var(--radius-lg);
+  padding: 60px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.locked-icon-wrap {
+  font-size: 3.2rem;
+  margin-bottom: 14px;
+  animation: lockShake 4s ease-in-out infinite;
+}
+
+@keyframes lockShake {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  92% { transform: rotate(-8deg); }
+  94% { transform: rotate(8deg); }
+  96% { transform: rotate(-5deg); }
+  98% { transform: rotate(5deg); }
+}
+
+.locked-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--rose-dark);
+  background: var(--rose-light);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.locked-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.locked-subtext {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 20px;
+}
+
+.locked-countdown-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--rose-dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Admin / Preview Button */
+.btn-admin-preview {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(46, 204, 113, 0.5);
+  color: #1b7a43;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: all 0.2s ease;
+}
+
+.btn-admin-preview:hover {
+  background: #e8f8f0;
+  transform: translateY(-2px);
+}
+
+.admin-active-badge {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  background: #2ecc71;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.4);
+  z-index: 100;
+}

@@ -178,6 +178,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initSparkleCanvas();
   initLightbox();
   initMemeEasterEggs();
+  initDailyUnlocking();
+  renderAdventRoadmap();
+  initAdminPreview();
 });
 
 /* ==========================================================================
@@ -649,3 +652,209 @@ function initLightbox() {
     if (e.target === lightbox) closeLightbox();
   });
 }
+
+/* ==========================================================================
+   Daily Unlocking & 7-Day Advent Countdown System
+   ========================================================================== */
+
+const adventSchedule = [
+  { day: 1, dateStr: "2026-09-18", label: "Sept 18", title: "The Countdown & Vibes", targetId: "countdown-section", icon: "⏳" },
+  { day: 2, dateStr: "2026-09-19", label: "Sept 19", title: "Pop Culture Lore & Memes", targetId: "memes-section", icon: "📺" },
+  { day: 3, dateStr: "2026-09-20", label: "Sept 20", title: "Camera Roll (16 Photos)", targetId: "memories-section", icon: "📸" },
+  { day: 4, dateStr: "2026-09-21", label: "Sept 21", title: "22 Things I Love About You", targetId: "reasons-section", icon: "💖" },
+  { day: 5, dateStr: "2026-09-22", label: "Sept 22", title: "The Birthday Cake & Candles", targetId: "cake-section", icon: "🎂" },
+  { day: 6, dateStr: "2026-09-23", label: "Sept 23", title: "The Love Letter", targetId: "letter-section", icon: "💌" },
+  { day: 7, dateStr: "2026-09-24", label: "Sept 24", title: "Abigail's 22nd Birthday! 🎂", targetId: "wish-jar-section", icon: "✨" }
+];
+
+let adminPreviewMode = sessionStorage.getItem("abigail_admin_preview") === "true";
+
+function isDayUnlocked(dateStr) {
+  if (adminPreviewMode) return true;
+  const unlockTarget = new Date(`${dateStr}T00:00:00`).getTime();
+  const now = new Date().getTime();
+  return now >= unlockTarget;
+}
+
+function initDailyUnlocking() {
+  const sections = document.querySelectorAll(".daily-unlockable");
+
+  sections.forEach((sec) => {
+    const unlockDate = sec.getAttribute("data-unlock-date");
+    const dayNum = sec.getAttribute("data-day");
+    const title = sec.getAttribute("data-title") || "Birthday Surprise";
+    const icon = sec.getAttribute("data-icon") || "🎁";
+
+    const isUnlocked = isDayUnlocked(unlockDate);
+
+    // Remove any previous overlay
+    const existingOverlay = sec.querySelector(".locked-overlay-card");
+    if (existingOverlay) existingOverlay.remove();
+
+    if (!isUnlocked) {
+      sec.classList.add("is-locked");
+
+      const targetTime = new Date(`${unlockDate}T00:00:00`).getTime();
+      const diff = targetTime - new Date().getTime();
+      const hoursRemaining = Math.max(1, Math.ceil(diff / (1000 * 60 * 60)));
+
+      const overlay = document.createElement("div");
+      overlay.className = "locked-overlay-card";
+      overlay.innerHTML = `
+        <div class="locked-icon-wrap">${icon} 🔒</div>
+        <span class="locked-badge">DAY ${dayNum} OF 7 &bull; ADVENT SURPRISE</span>
+        <h3 class="locked-title">${title}</h3>
+        <p class="locked-subtext">
+          This surprise unlocks on <strong>${formatUnlockDate(unlockDate)}</strong> at midnight! 
+          One new gift unlocks every single day until your 22nd birthday.
+        </p>
+        <div class="locked-countdown-pill">
+          <i data-lucide="clock"></i>
+          <span>Unlocks in ~${hoursRemaining} hour${hoursRemaining === 1 ? '' : 's'} ⏳</span>
+        </div>
+      `;
+
+      sec.appendChild(overlay);
+    } else {
+      sec.classList.remove("is-locked");
+    }
+  });
+
+  updateNavLockIndicators();
+  if (window.lucide) lucide.createIcons();
+}
+
+function formatUnlockDate(dateStr) {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const dateObj = new Date(y, m - 1, d);
+  return dateObj.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+}
+
+function updateNavLockIndicators() {
+  const navLinks = document.querySelectorAll(".nav-links a");
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+    if (!href.startsWith("#")) return;
+    const targetSec = document.querySelector(href);
+    if (!targetSec) return;
+
+    const baseText = link.textContent.replace(" 🔒", "");
+    if (targetSec.classList.contains("is-locked")) {
+      link.textContent = `${baseText} 🔒`;
+      link.style.opacity = "0.65";
+    } else {
+      link.textContent = baseText;
+      link.style.opacity = "1";
+    }
+  });
+}
+
+/* Render 7-Day Advent Roadmap Grid */
+function renderAdventRoadmap() {
+  const grid = document.getElementById("adventGrid");
+  if (!grid) return;
+
+  grid.innerHTML = "";
+
+  const now = new Date();
+  const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+
+  adventSchedule.forEach((item) => {
+    const unlocked = isDayUnlocked(item.dateStr);
+    const isToday = item.dateStr === todayStr;
+
+    const card = document.createElement("a");
+    card.className = `advent-card ${unlocked ? 'unlocked' : 'locked'} ${isToday ? 'today' : ''}`;
+    card.href = `#${item.targetId}`;
+
+    let statusText = "🔒 LOCKED";
+    if (isToday) {
+      statusText = "🔓 TODAY";
+    } else if (unlocked) {
+      statusText = "🔓 OPEN";
+    }
+
+    card.innerHTML = `
+      <span class="advent-status-badge">${statusText}</span>
+      <span class="advent-date">${item.label}</span>
+      <span style="font-size:1.3rem;">${item.icon}</span>
+      <span class="advent-name">${item.title}</span>
+    `;
+
+    card.addEventListener("click", (e) => {
+      if (!unlocked) {
+        e.preventDefault();
+        alert(`🔒 Shh! Day ${item.day} (${item.title}) unlocks on ${formatUnlockDate(item.dateStr)}! Come back tomorrow to open it! ✨`);
+      }
+    });
+
+    grid.appendChild(card);
+  });
+}
+
+/* Admin / Testing Preview System */
+function initAdminPreview() {
+  const btn = document.getElementById("adminPreviewToggle");
+  const plumbob = document.querySelector(".sims-plumbob");
+
+  function toggleAdmin() {
+    adminPreviewMode = !adminPreviewMode;
+    sessionStorage.setItem("abigail_admin_preview", String(adminPreviewMode));
+
+    initDailyUnlocking();
+    renderAdventRoadmap();
+
+    if (adminPreviewMode) {
+      alert("💎 SIMS MOTHERLODE CHEAT ACTIVATED!\n\nAll 7 days are now unlocked for preview testing! Click the button in the footer again to return to normal countdown mode.");
+      showAdminBadge();
+    } else {
+      alert("🔒 Restored to Abigail's real countdown view (Only Day 1 unlocked for today)!");
+      hideAdminBadge();
+    }
+  }
+
+  if (btn) btn.addEventListener("click", toggleAdmin);
+
+  let plumbobClicks = 0;
+  if (plumbob) {
+    plumbob.addEventListener("click", () => {
+      plumbobClicks++;
+      if (plumbobClicks >= 3) {
+        plumbobClicks = 0;
+        toggleAdmin();
+      }
+    });
+  }
+
+  let typedKeys = "";
+  window.addEventListener("keydown", (e) => {
+    typedKeys += e.key.toLowerCase();
+    if (typedKeys.length > 15) typedKeys = typedKeys.slice(-15);
+    if (typedKeys.includes("motherlode")) {
+      typedKeys = "";
+      toggleAdmin();
+    }
+  });
+
+  if (adminPreviewMode) {
+    showAdminBadge();
+  }
+}
+
+function showAdminBadge() {
+  let badge = document.getElementById("adminBadge");
+  if (!badge) {
+    badge = document.createElement("div");
+    badge.id = "adminBadge";
+    badge.className = "admin-active-badge";
+    badge.textContent = "👑 PREVIEW MODE: ALL DAYS UNLOCKED";
+    document.body.appendChild(badge);
+  }
+  badge.style.display = "block";
+}
+
+function hideAdminBadge() {
+  const badge = document.getElementById("adminBadge");
+  if (badge) badge.style.display = "none";
+}
+

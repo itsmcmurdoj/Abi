@@ -130,14 +130,27 @@
 
       <!-- Quick Action Controls -->
       <div class="hero-actions">
-        <a href="#memories-section" class="btn-primary">
-          <i data-lucide="image"></i>
-          <span>See The 16 Memories</span>
+        <a href="#countdown-section" class="btn-primary">
+          <i data-lucide="sparkles"></i>
+          <span>Day 1 Unlocked: The Countdown!</span>
         </a>
         <button class="btn-secondary" id="previewZeroBtn" title="Test what happens when the countdown hits zero!">
           <i data-lucide="party-popper"></i>
           <span>Preview Confetti Blast 🎉</span>
         </button>
+      </div>
+
+      <!-- 7-DAY BIRTHDAY ADVENT ROADMAP -->
+      <div class="advent-roadmap">
+        <div class="advent-header">
+          <span class="advent-tag">7-Day Advent Countdown</span>
+          <h3 class="advent-title">A New Surprise Unlocks Every Single Day</h3>
+          <p class="advent-sub">Check back daily as we count down to midnight on September 24th!</p>
+        </div>
+        
+        <div class="advent-grid" id="adventGrid">
+          <!-- Populated dynamically to reflect real unlock status -->
+        </div>
       </div>
 
       <!-- Floating decorative icons -->
@@ -149,15 +162,16 @@
     </section>
 
 
-    <!-- MEME & TV LORE SECTION (Lost, Paradise, Limitless, YouTube Brothers, Sims) -->
-    <section id="memes-section" class="section-container">
-      <div class="section-header">
-        <span class="section-tag">Approved Pop Culture Lore</span>
-        <h2 class="section-heading">The Abigail Cinematic Universe</h2>
-        <p class="section-subtext">The official fandoms, shows, and running jokes that define your 22nd year.</p>
-      </div>
+    <!-- DAY 2 (Sept 19): MEME & TV LORE SECTION -->
+    <section id="memes-section" class="section-container daily-unlockable" data-unlock-date="2026-09-19" data-day="2" data-title="Pop Culture Lore & Memes" data-icon="📺">
+      <div class="section-content-wrap">
+        <div class="section-header">
+          <span class="section-tag">Day 2 &bull; Approved Pop Culture Lore</span>
+          <h2 class="section-heading">The Abigail Cinematic Universe</h2>
+          <p class="section-subtext">The official fandoms, shows, and running jokes that define your 22nd year.</p>
+        </div>
 
-      <div class="meme-grid">
+        <div class="meme-grid">
 
         <!-- Card 1: LOST -->
         <div class="meme-card lost-theme">
@@ -249,153 +263,163 @@
     </section>
 
 
-    <!-- 16 POLAROID MEMORIES (Dated Chronologically) -->
-    <section id="memories-section" class="section-container">
-      <div class="section-header">
-        <span class="section-tag">The 16 Photos</span>
-        <h2 class="section-heading">Camera Roll Highlights</h2>
-        <p class="section-subtext">16 favorite moments from February to August 2026, tagged with their exact dates.</p>
-      </div>
-
-      <div class="polaroid-gallery" id="polaroidGallery">
-        <!-- 16 Real Photos Rendered Here -->
-      </div>
-    </section>
-
-
-    <!-- 22 THINGS I LIKE ABOUT HER -->
-    <section id="reasons-section" class="section-container">
-      <div class="section-header">
-        <span class="section-tag">The 22 List</span>
-        <h2 class="section-heading">22 Things I Love About You</h2>
-        <p class="section-subtext">Tap any card to flip and read. Starting with your favorite morning coffee and contagious smile!</p>
-        <div class="reasons-progress-wrap">
-          <div class="reasons-progress-bar">
-            <div class="reasons-progress-fill" id="reasonsProgress"></div>
-          </div>
-          <span class="reasons-counter" id="reasonsCounter">0 / 22 Revealed</span>
-        </div>
-      </div>
-
-      <div class="reasons-grid" id="reasonsGrid">
-        <!-- 22 Cards Generated in script.js -->
-      </div>
-    </section>
-
-
-    <!-- INTERACTIVE BIRTHDAY CAKE & MAKE A WISH -->
-    <section id="cake-section" class="section-container">
-      <div class="section-header">
-        <span class="section-tag">Interactive Wish</span>
-        <h2 class="section-heading">The 22nd Birthday Cake</h2>
-        <p class="section-subtext">Click the candles to blow them out, make your birthday wish, and trigger confetti!</p>
-      </div>
-
-      <div class="cake-stage" id="cakeStage">
-        <div class="cake-container" id="birthdayCake" title="Click to blow out candles!">
-          <div class="candles-wrapper">
-            <div class="candle candle-1">
-              <div class="flame flame-1" id="flame1"><div class="flame-inner"></div></div>
-              <div class="wick"></div>
-              <div class="candle-stick"><span class="candle-number">2</span></div>
-            </div>
-            <div class="candle candle-2">
-              <div class="flame flame-2" id="flame2"><div class="flame-inner"></div></div>
-              <div class="wick"></div>
-              <div class="candle-stick"><span class="candle-number">2</span></div>
-            </div>
-          </div>
-
-          <div class="cake-layer cake-tier-top">
-            <div class="strawberry-row">🍓 🍓 🍓 🍓 🍓</div>
-          </div>
-          <div class="cake-layer cake-frosting-middle"></div>
-          <div class="cake-layer cake-tier-bottom">
-            <span class="cake-message">Happy 22nd Abigail ✨</span>
-          </div>
-          <div class="cake-plate"></div>
+    <!-- DAY 3 (Sept 20): 16 POLAROID MEMORIES -->
+    <section id="memories-section" class="section-container daily-unlockable" data-unlock-date="2026-09-20" data-day="3" data-title="Camera Roll (16 Photos)" data-icon="📸">
+      <div class="section-content-wrap">
+        <div class="section-header">
+          <span class="section-tag">Day 3 &bull; The 16 Photos</span>
+          <h2 class="section-heading">Camera Roll Highlights</h2>
+          <p class="section-subtext">16 favorite moments from February to August 2026, tagged with their exact dates.</p>
         </div>
 
-        <div class="cake-controls">
-          <button class="btn-primary" id="blowCandlesBtn">
-            <i data-lucide="wind"></i>
-            <span id="candleBtnText">Blow Out The Candles!</span>
-          </button>
-          <p class="wish-status-text" id="wishStatusText">Candles are glowing! Click to blow them out.</p>
+        <div class="polaroid-gallery" id="polaroidGallery">
+          <!-- 16 Real Photos Rendered Here -->
         </div>
       </div>
     </section>
 
 
-    <!-- VIRTUAL LOVE LETTER -->
-    <section id="letter-section" class="section-container">
-      <div class="section-header">
-        <span class="section-tag">From Jackson</span>
-        <h2 class="section-heading">A Letter Before The Big Day</h2>
-        <p class="section-subtext">Click the wax seal to open your letter.</p>
-      </div>
-
-      <div class="envelope-zone">
-        <div class="envelope-wrapper" id="envelopeWrapper">
-          <div class="envelope" id="envelope">
-            <div class="envelope-flap" id="envelopeFlap"></div>
-            <div class="wax-seal" id="waxSeal">
-              <span class="wax-letter">A</span>
+    <!-- DAY 4 (Sept 21): 22 THINGS I LIKE ABOUT HER -->
+    <section id="reasons-section" class="section-container daily-unlockable" data-unlock-date="2026-09-21" data-day="4" data-title="22 Things I Love About You" data-icon="💖">
+      <div class="section-content-wrap">
+        <div class="section-header">
+          <span class="section-tag">Day 4 &bull; The 22 List</span>
+          <h2 class="section-heading">22 Things I Love About You</h2>
+          <p class="section-subtext">Tap any card to flip and read. From our morning coffee to swimming in the waves!</p>
+          <div class="reasons-progress-wrap">
+            <div class="reasons-progress-bar">
+              <div class="reasons-progress-fill" id="reasonsProgress"></div>
             </div>
-            
-            <div class="letter-paper" id="letterPaper">
-              <div class="letter-inner">
-                <div class="letter-date">September 2026</div>
-                <h3 class="letter-salutation">My Dearest Abigail,</h3>
-                <div class="letter-body">
-                  <p>
-                    I couldn't wait until the 24th to start celebrating you. Every single day leading up to your birthday is worth hyping up because you are genuinely the most wonderful person in my life.
-                  </p>
-                  <p>
-                    Whether we are having our quiet morning coffee together, laughing until our stomachs hurt, bingeing TV shows, or heading out to be social butterflies—there is no one else I would rather share this life with. You bring so much energy, kindness, and light to everyone around you.
-                  </p>
-                  <p>
-                    22 is going to be your biggest and best chapter yet. Keep watching that countdown clock tick down, because when midnight on September 24th arrives, the whole world celebrates you!
-                  </p>
-                </div>
-                <div class="letter-closing">
-                  <p>With all my love,</p>
-                  <span class="letter-signature">Jackson</span>
-                </div>
+            <span class="reasons-counter" id="reasonsCounter">0 / 22 Revealed</span>
+          </div>
+        </div>
+
+        <div class="reasons-grid" id="reasonsGrid">
+          <!-- 22 Cards Generated in script.js -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- DAY 5 (Sept 22): INTERACTIVE BIRTHDAY CAKE & MAKE A WISH -->
+    <section id="cake-section" class="section-container daily-unlockable" data-unlock-date="2026-09-22" data-day="5" data-title="The Birthday Cake & Wish" data-icon="🎂">
+      <div class="section-content-wrap">
+        <div class="section-header">
+          <span class="section-tag">Day 5 &bull; Interactive Wish</span>
+          <h2 class="section-heading">The 22nd Birthday Cake</h2>
+          <p class="section-subtext">Click the candles to blow them out, make your birthday wish, and trigger confetti!</p>
+        </div>
+
+        <div class="cake-stage" id="cakeStage">
+          <div class="cake-container" id="birthdayCake" title="Click to blow out candles!">
+            <div class="candles-wrapper">
+              <div class="candle candle-1">
+                <div class="flame flame-1" id="flame1"><div class="flame-inner"></div></div>
+                <div class="wick"></div>
+                <div class="candle-stick"><span class="candle-number">2</span></div>
+              </div>
+              <div class="candle candle-2">
+                <div class="flame flame-2" id="flame2"><div class="flame-inner"></div></div>
+                <div class="wick"></div>
+                <div class="candle-stick"><span class="candle-number">2</span></div>
               </div>
             </div>
 
+            <div class="cake-layer cake-tier-top">
+              <div class="strawberry-row">🍓 🍓 🍓 🍓 🍓</div>
+            </div>
+            <div class="cake-layer cake-frosting-middle"></div>
+            <div class="cake-layer cake-tier-bottom">
+              <span class="cake-message">Happy 22nd Abigail ✨</span>
+            </div>
+            <div class="cake-plate"></div>
           </div>
-        </div>
 
-        <div class="envelope-prompt" id="envelopePrompt">
-          <i data-lucide="mouse-pointer-click"></i> Tap the wax seal to read
+          <div class="cake-controls">
+            <button class="btn-primary" id="blowCandlesBtn">
+              <i data-lucide="wind"></i>
+              <span id="candleBtnText">Blow Out The Candles!</span>
+            </button>
+            <p class="wish-status-text" id="wishStatusText">Candles are glowing! Click to blow them out.</p>
+          </div>
         </div>
       </div>
     </section>
 
 
-    <!-- WISH JAR -->
-    <section id="wish-jar-section" class="section-container">
-      <div class="section-header">
-        <span class="section-tag">Keepsake</span>
-        <h2 class="section-heading">Abigail's 22nd Wish Jar</h2>
-        <p class="section-subtext">Type a wish for year 22 and save it to the digital stars!</p>
+    <!-- DAY 6 (Sept 23): VIRTUAL LOVE LETTER -->
+    <section id="letter-section" class="section-container daily-unlockable" data-unlock-date="2026-09-23" data-day="6" data-title="The Love Letter" data-icon="💌">
+      <div class="section-content-wrap">
+        <div class="section-header">
+          <span class="section-tag">Day 6 &bull; From Jackson</span>
+          <h2 class="section-heading">A Letter Before The Big Day</h2>
+          <p class="section-subtext">Click the wax seal to open your letter.</p>
+        </div>
+
+        <div class="envelope-zone">
+          <div class="envelope-wrapper" id="envelopeWrapper">
+            <div class="envelope" id="envelope">
+              <div class="envelope-flap" id="envelopeFlap"></div>
+              <div class="wax-seal" id="waxSeal">
+                <span class="wax-letter">A</span>
+              </div>
+              
+              <div class="letter-paper" id="letterPaper">
+                <div class="letter-inner">
+                  <div class="letter-date">September 2026</div>
+                  <h3 class="letter-salutation">My Dearest Abigail,</h3>
+                  <div class="letter-body">
+                    <p>
+                      I couldn't wait until the 24th to start celebrating you. Every single day leading up to your birthday is worth hyping up because you are genuinely the most wonderful person in my life.
+                    </p>
+                    <p>
+                      Whether we are having our quiet morning coffee together, laughing until our stomachs hurt, watching Lucas & Jacob, or heading out to be social butterflies—there is no one else I would rather share this life with. You bring so much energy, kindness, and light to everyone around you.
+                    </p>
+                    <p>
+                      22 is going to be your biggest and best chapter yet. Keep watching that countdown clock tick down, because when midnight on September 24th arrives, the whole world celebrates you!
+                    </p>
+                  </div>
+                  <div class="letter-closing">
+                    <p>With all my love,</p>
+                    <span class="letter-signature">Jackson</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="envelope-prompt" id="envelopePrompt">
+            <i data-lucide="mouse-pointer-click"></i> Tap the wax seal to read
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="wish-jar-wrapper">
-        <div class="wish-jar-card">
-          <div class="wish-jar-icon">✨ 🏺 ✨</div>
-          <form id="wishForm">
-            <label for="wishInput" class="wish-label">What are you wishing for at 22?</label>
-            <textarea id="wishInput" rows="3" placeholder="Drop your birthday wishes, goals, or dream adventures here..." required></textarea>
-            <button type="submit" class="btn-primary" id="saveWishBtn">
-              <i data-lucide="send"></i>
-              <span>Send Wish Into The Universe</span>
-            </button>
-          </form>
 
-          <div class="saved-wishes-area" id="savedWishesArea"></div>
+    <!-- DAY 7 (Sept 24 - BIRTHDAY MIDNIGHT): WISH JAR & FINALE -->
+    <section id="wish-jar-section" class="section-container daily-unlockable" data-unlock-date="2026-09-24" data-day="7" data-title="Abigail's 22nd Wish Jar & Finale" data-icon="✨">
+      <div class="section-content-wrap">
+        <div class="section-header">
+          <span class="section-tag">Day 7 &bull; Birthday Finale</span>
+          <h2 class="section-heading">Abigail's 22nd Wish Jar</h2>
+          <p class="section-subtext">Type a wish for year 22 and save it to the digital stars!</p>
+        </div>
+
+        <div class="wish-jar-wrapper">
+          <div class="wish-jar-card">
+            <div class="wish-jar-icon">✨ 🏺 ✨</div>
+            <form id="wishForm">
+              <label for="wishInput" class="wish-label">What are you wishing for at 22?</label>
+              <textarea id="wishInput" rows="3" placeholder="Drop your birthday wishes, goals, or dream adventures here..." required></textarea>
+              <button type="submit" class="btn-primary" id="saveWishBtn">
+                <i data-lucide="send"></i>
+                <span>Send Wish Into The Universe</span>
+              </button>
+            </form>
+
+            <div class="saved-wishes-area" id="savedWishesArea"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -407,6 +431,10 @@
       <div class="footer-confetti-btn-wrap">
         <button class="btn-confetti" id="extraConfettiBtn">
           <span>More Confetti! 🎊</span>
+        </button>
+        <!-- Jackson Admin Preview Toggle -->
+        <button class="btn-admin-preview" id="adminPreviewToggle" title="Sims Cheat: Preview all sections right now">
+          <span>💎 Sims Cheat: <code>motherlode</code> (Preview All 7 Days)</span>
         </button>
       </div>
     </footer>
