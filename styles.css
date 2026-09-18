@@ -441,8 +441,9 @@ body {
   }
 }
 
-/* Birthday Unlocked Banner */
+/* Birthday Unlocked Banner (Only visible on September 24th) */
 .birthday-unlocked-banner {
+  display: none !important;
   background: linear-gradient(135deg, #d65d6c, #e5a93c, #2ecc71);
   color: #ffffff;
   border-radius: 20px;
@@ -451,6 +452,10 @@ body {
   margin: 0 auto 30px;
   max-width: 780px;
   animation: bounceBanner 1s ease infinite alternate;
+}
+
+.birthday-unlocked-banner.show {
+  display: block !important;
 }
 
 .birthday-unlocked-banner h2 {

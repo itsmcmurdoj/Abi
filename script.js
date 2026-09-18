@@ -280,6 +280,12 @@ function initCountdown() {
       return;
     }
 
+    // Strict safety: hide celebration banner while still counting down!
+    if (unlockedBanner) {
+      unlockedBanner.classList.remove("show");
+      unlockedBanner.style.setProperty("display", "none", "important");
+    }
+
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -296,34 +302,42 @@ function initCountdown() {
 
   // Prank button: "haha got u bean u gotta wait pal"
   if (previewZeroBtn) {
-    previewZeroBtn.addEventListener("click", () => {
-      showPrankErrorModal();
+    previewZeroBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.showPrankErrorModal(e);
     });
   }
 }
 
-function showPrankErrorModal() {
-  const modal = document.getElementById("prankModal");
-  const closeBtn = document.getElementById("prankCloseBtn");
+window.showPrankErrorModal = function(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  if (e && e.stopPropagation) e.stopPropagation();
 
   playBuzzerSound();
+
+  const modal = document.getElementById("prankModal");
+  const closeBtn = document.getElementById("prankCloseBtn");
 
   if (modal) {
     modal.classList.add("active");
 
     if (closeBtn) {
-      closeBtn.onclick = () => {
+      closeBtn.onclick = (ev) => {
+        if (ev) ev.stopPropagation();
         modal.classList.remove("active");
       };
     }
 
-    modal.onclick = (e) => {
-      if (e.target === modal) {
+    modal.onclick = (ev) => {
+      if (ev.target === modal) {
         modal.classList.remove("active");
       }
     };
+  } else {
+    alert("haha got u bean u gotta wait pal");
   }
-}
+};
 
 function playBuzzerSound() {
   try {
@@ -349,17 +363,20 @@ function playBuzzerSound() {
 }
 
 function triggerBirthdayCelebration() {
+  const now = new Date().getTime();
+  if (birthdayTarget - now > 0 && !adminPreviewMode) {
+    return; // Strict safety check
+  }
   birthdayCelebrated = true;
   const unlockedBanner = document.getElementById("birthdayUnlockedBanner");
-  if (unlockedBanner) unlockedBanner.style.display = "block";
+  if (unlockedBanner) {
+    unlockedBanner.classList.add("show");
+    unlockedBanner.style.removeProperty("display");
+    unlockedBanner.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
   // Massive celebration confetti showers
   fireCelebrationConfetti(true);
-
-  // Scroll banner into view smoothly
-  if (unlockedBanner) {
-    unlockedBanner.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
 }
 
 /* Confetti System */
