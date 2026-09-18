@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy 22nd Birthday Abigail! 💖✨</title>
-  <meta name="description" content="A special birthday website celebrating Abigail's 22nd birthday with love." />
+  <title>Almost Your 22nd Birthday, Abigail! 💖⏳</title>
+  <meta name="description" content="Official 22nd Birthday Countdown & Celebration for Abigail." />
   
-  <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>" />
+  <!-- Favicon with Sims Green Diamond Plumbob -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><polygon points=%2250,5 90,50 50,95 10,50%22 fill=%22%232ecc71%22 stroke=%22%2327ae60%22 stroke-width=%224%22/></svg>" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   
-  <!-- Canvas Confetti Library for Celebrations -->
+  <!-- Canvas Confetti Library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
   <!-- Lucide Icons -->
@@ -24,197 +24,251 @@
 </head>
 <body>
 
-  <!-- Floating Particles Canvas -->
+  <!-- Audio Element for Drake's "Ratchet Happy Birthday" -->
+  <audio id="birthdayAudio" loop preload="auto">
+    <source src="assets/audio/birthday-song.mp3" type="audio/mpeg" />
+    <source src="assets/audio/Ratchet Happy Birthday - Drake (128k).mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- Autoplay Prompt Banner (Guarantees playback if browser blocks unmuted autoplay initially) -->
+  <div class="autoplay-banner" id="autoplayBanner">
+    <div class="autoplay-content">
+      <span class="banner-pulse">🎵</span>
+      <span>Tap anywhere to vibe to Drake's <em>"Ratchet Happy Birthday"</em> 🎂🔊</span>
+      <button class="banner-play-btn" id="bannerPlayBtn">Play Music 🎶</button>
+    </div>
+  </div>
+
+  <!-- Floating Sparkles Canvas -->
   <canvas id="sparkle-canvas"></canvas>
 
-  <!-- Floating Audio / Ambient Music Control -->
+  <!-- Persistent Floating Music Widget -->
   <div class="music-widget" id="musicWidget">
-    <button class="music-btn" id="musicToggle" aria-label="Toggle background music" title="Play romantic ambient melody">
+    <button class="music-btn" id="musicToggle" aria-label="Toggle Drake - Ratchet Happy Birthday" title="Play / Pause Drake">
       <div class="vinyl-disc" id="vinylDisc">
-        <span class="music-icon">🎵</span>
+        <span class="music-icon">🦉</span>
       </div>
       <div class="music-label">
-        <span class="music-title">Birthday Melody</span>
-        <span class="music-status" id="musicStatus">Click to play ✨</span>
+        <span class="music-title">Drake - Ratchet Happy Birthday</span>
+        <span class="music-status" id="musicStatus">Playing ✨</span>
       </div>
     </button>
   </div>
 
-  <!-- Quick Navigation Bar -->
+  <!-- Navigation Bar -->
   <nav class="nav-glass">
-    <div class="nav-logo">Abigail &bull; 22</div>
+    <div class="nav-logo">
+      <span class="mini-plumbob">💎</span> Abigail &bull; 22
+    </div>
     <ul class="nav-links">
-      <li><a href="#hero">Start</a></li>
-      <li><a href="#cake-section">Make a Wish</a></li>
-      <li><a href="#letter-section">Letter</a></li>
-      <li><a href="#reasons-section">22 Reasons</a></li>
-      <li><a href="#memories-section">Memories</a></li>
-      <li><a href="#journey-section">Our Journey</a></li>
-      <li><a href="#wish-jar-section">Wish Jar</a></li>
+      <li><a href="#countdown-section">Countdown ⏳</a></li>
+      <li><a href="#memes-section">Lore & Memes 📺</a></li>
+      <li><a href="#cake-section">The Cake 🎂</a></li>
+      <li><a href="#reasons-section">22 Things 💖</a></li>
+      <li><a href="#memories-section">Camera Roll 📸</a></li>
+      <li><a href="#letter-section">Letter 💌</a></li>
+      <li><a href="#wish-jar-section">Wish Jar ✨</a></li>
     </ul>
   </nav>
 
-  <!-- Main Container -->
   <main class="page-wrap">
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="hero-section">
+    <!-- SIMS MOODLET BAR (Easter Egg / Meme) -->
+    <div class="sims-bar animate-fade-in">
+      <div class="sims-plumbob-wrap">
+        <div class="sims-plumbob"></div>
+      </div>
+      <div class="sims-info">
+        <span class="sims-mood">Mood: Very Playful & Hyped (+22) 🟢</span>
+        <span class="sims-cheats">Cheat code activated: <code>motherlode</code> (+§50,000 Simoleons) 💰</span>
+        <span class="sims-quote">"Sul Sul! Pool ladders are 100% safe today."</span>
+      </div>
+    </div>
+
+    <!-- HERO & BIG COUNTDOWN SECTION -->
+    <section id="countdown-section" class="hero-section">
       <div class="hero-badge animate-fade-in">
-        <span class="sparkle-emoji">✨</span> Celebrating 22 Wonderful Years <span class="sparkle-emoji">✨</span>
+        <span class="sparkle-emoji">🚨</span> IT'S ALMOST YOUR BIRTHDAY! <span class="sparkle-emoji">🚨</span>
       </div>
       
       <h1 class="hero-title animate-pop-up">
-        Happy 22nd Birthday, <span class="highlight-name">Abigail</span>
+        The Official 22nd Birthday Countdown for <span class="highlight-name">Abigail</span>
       </h1>
       
-      <p class="hero-subtitle animate-fade-in delay-1">
-        To the most incredible, radiant, and loving person in the world. This little corner of the internet was made just for you, to celebrate everything that makes you so deeply cherished.
+      <p class="hero-subtitle">
+        September 24th is right around the corner. We are counting down every single second until midnight!
       </p>
 
-      <div class="hero-actions animate-fade-in delay-2">
-        <a href="#cake-section" class="btn-primary">
-          <span>Blow Out Your Candles</span>
-          <i data-lucide="sparkles"></i>
+      <!-- BIG DIGITAL COUNTDOWN CLOCK -->
+      <div class="countdown-container" id="countdownClock">
+        <div class="time-box">
+          <div class="time-number" id="cdDays">00</div>
+          <div class="time-label">DAYS</div>
+        </div>
+        <div class="time-divider">:</div>
+        <div class="time-box">
+          <div class="time-number" id="cdHours">00</div>
+          <div class="time-label">HOURS</div>
+        </div>
+        <div class="time-divider">:</div>
+        <div class="time-box">
+          <div class="time-number" id="cdMinutes">00</div>
+          <div class="time-label">MINUTES</div>
+        </div>
+        <div class="time-divider">:</div>
+        <div class="time-box">
+          <div class="time-number" id="cdSeconds">00</div>
+          <div class="time-label">SECONDS</div>
+        </div>
+      </div>
+
+      <!-- Celebration Banner (Revealed when countdown hits 0 or previewed) -->
+      <div class="birthday-unlocked-banner" id="birthdayUnlockedBanner" style="display: none;">
+        <h2>🎉 HAPPY 22ND BIRTHDAY ABIGAIL! 🎂🍾</h2>
+        <p>THE WAIT IS OVER! Today is all about YOU!</p>
+      </div>
+
+      <!-- Quick Action Controls -->
+      <div class="hero-actions">
+        <a href="#memories-section" class="btn-primary">
+          <i data-lucide="image"></i>
+          <span>See The 16 Memories</span>
         </a>
-        <a href="#letter-section" class="btn-secondary">
-          <span>Open Your Letter</span>
-          <i data-lucide="mail-heart"></i>
-        </a>
+        <button class="btn-secondary" id="previewZeroBtn" title="Test what happens when the countdown hits zero!">
+          <i data-lucide="party-popper"></i>
+          <span>Preview Confetti Blast 🎉</span>
+        </button>
       </div>
 
-      <!-- Floating Decorative Elements -->
-      <div class="floating-bubble bubble-1">💖</div>
-      <div class="floating-bubble bubble-2">🌸</div>
-      <div class="floating-bubble bubble-3">✨</div>
-      <div class="floating-bubble bubble-4">🥂</div>
-      <div class="floating-bubble bubble-5">🎂</div>
+      <!-- Floating decorative icons -->
+      <div class="floating-bubble bubble-1">🎂</div>
+      <div class="floating-bubble bubble-2">💖</div>
+      <div class="floating-bubble bubble-3">🦉</div>
+      <div class="floating-bubble bubble-4">💎</div>
+      <div class="floating-bubble bubble-5">⏳</div>
     </section>
 
 
-    <!-- INTERACTIVE BIRTHDAY CAKE SECTION -->
-    <section id="cake-section" class="section-container">
+    <!-- MEME & TV LORE SECTION (Lost, Paradise, Limitless, YouTube Brothers, Sims) -->
+    <section id="memes-section" class="section-container">
       <div class="section-header">
-        <span class="section-tag">Traditional & Magical</span>
-        <h2 class="section-heading">Make a 22nd Birthday Wish</h2>
-        <p class="section-subtext">Click the candles below to extinguish the flames, make your secret wish, and celebrate!</p>
+        <span class="section-tag">Approved Pop Culture Lore</span>
+        <h2 class="section-heading">The Abigail Cinematic Universe</h2>
+        <p class="section-subtext">The official fandoms, shows, and running jokes that define your 22nd year.</p>
       </div>
 
-      <div class="cake-stage" id="cakeStage">
-        <!-- Interactive Cake -->
-        <div class="cake-container" id="birthdayCake" title="Click to blow out candles!">
-          
-          <!-- Candles Holder (Two Candles for '22') -->
-          <div class="candles-wrapper">
-            <!-- Candle 1 -->
-            <div class="candle candle-1">
-              <div class="flame flame-1" id="flame1">
-                <div class="flame-inner"></div>
-              </div>
-              <div class="wick"></div>
-              <div class="candle-stick">
-                <span class="candle-number">2</span>
-              </div>
-            </div>
-            <!-- Candle 2 -->
-            <div class="candle candle-2">
-              <div class="flame flame-2" id="flame2">
-                <div class="flame-inner"></div>
-              </div>
-              <div class="wick"></div>
-              <div class="candle-stick">
-                <span class="candle-number">2</span>
-              </div>
-            </div>
-          </div>
+      <div class="meme-grid">
 
-          <!-- Cake Layers -->
-          <div class="cake-layer cake-frosting-top">
-            <div class="cream-drips">
-              <span></span><span></span><span></span><span></span><span></span>
+        <!-- Card 1: LOST -->
+        <div class="meme-card lost-theme">
+          <div class="meme-header">
+            <span class="meme-tag">LOST // Station 3</span>
+            <span class="meme-badge-pill">4 8 15 16 23 42</span>
+          </div>
+          <div class="meme-body">
+            <div class="dharma-logo">
+              <span class="dharma-inner">THE SWAN</span>
+            </div>
+            <h3>"WE HAVE TO GO BACK!"</h3>
+            <p>
+              The timer must be reset every 108 minutes, but on September 24th, the only protocol is celebrating Abigail. Don't tell me what she can't do!
+            </p>
+            <div class="lost-terminal">
+              <span class="lost-prompt">> EXECUTE_BIRTHDAY_22</span>
+              <button class="lost-btn" id="lostExecuteBtn">ENTER THE NUMBERS</button>
             </div>
           </div>
-          <div class="cake-layer cake-tier-top">
-            <div class="strawberry-row">🍓 🍓 🍓 🍓 🍓</div>
-          </div>
-          <div class="cake-layer cake-frosting-middle"></div>
-          <div class="cake-layer cake-tier-bottom">
-            <span class="cake-message">Happy Birthday Abigail ✨</span>
-          </div>
-          <div class="cake-plate"></div>
+          <div class="meme-footer"><em>"See you in another life, brother... or on the 24th."</em></div>
         </div>
 
-        <div class="cake-controls">
-          <button class="btn-primary" id="blowCandlesBtn">
-            <i data-lucide="wind"></i>
-            <span id="candleBtnText">Blow Out The Candles!</span>
-          </button>
-          <p class="wish-status-text" id="wishStatusText">Candles are glowing! Tap above to make your wish.</p>
+        <!-- Card 2: LIMITLESS -->
+        <div class="meme-card limitless-theme">
+          <div class="meme-header">
+            <span class="meme-tag">LIMITLESS // NZT-48</span>
+            <span class="meme-badge-pill">100% Brain Capacity</span>
+          </div>
+          <div class="meme-body">
+            <div class="pill-graphic">
+              <div class="nzt-pill"><span>NZT-48</span></div>
+            </div>
+            <h3>Brain Operating at Full 22 Power</h3>
+            <p>
+              Side effects of taking NZT-48 include: solving impossible cases in minutes, remembering every detail, looking effortlessly iconic, and having immaculate taste.
+            </p>
+            <div class="limitless-meter">
+              <div class="meter-bar"><div class="meter-fill" style="width: 100%;"></div></div>
+              <span>Abigail Cognitive Score: 100/100</span>
+            </div>
+          </div>
+          <div class="meme-footer"><em>"I wasn't high. I wasn't wired. I was just turning 22."</em></div>
         </div>
+
+        <!-- Card 3: PARADISE -->
+        <div class="meme-card paradise-theme">
+          <div class="meme-header">
+            <span class="meme-tag">PARADISE // HULU</span>
+            <span class="meme-badge-pill">Xavier Collins Approved</span>
+          </div>
+          <div class="meme-body">
+            <div class="badge-graphic">
+              <i data-lucide="shield-alert"></i>
+            </div>
+            <h3>Top Secret Presidential Clearance</h3>
+            <p>
+              Agent Xavier Collins has officially placed a perimeter around September 24th. Dan Fogelman could write 8 plot twists and none of them would match how obsessed I am with you.
+            </p>
+            <div class="paradise-status">
+              <span>STATUS: SAFE IN PARADISE 🌴🔒</span>
+            </div>
+          </div>
+          <div class="meme-footer"><em>"The investigation is closed. Abigail is officially that girl."</em></div>
+        </div>
+
+        <!-- Card 4: THE YOUTUBE BROTHERS -->
+        <div class="meme-card youtube-theme">
+          <div class="meme-header">
+            <span class="meme-tag">YOUTUBE LORE</span>
+            <span class="meme-badge-pill">6-Hour Binge Mode</span>
+          </div>
+          <div class="meme-body">
+            <div class="yt-graphic">
+              <i data-lucide="play-circle"></i>
+            </div>
+            <h3>"Those Two YouTube Brothers"</h3>
+            <p>
+              Watching their chaotic brotherly nonsense in bed for 5 hours straight while refusing to do anything else. Unmatched birthday energy.
+            </p>
+            <div class="yt-stats">
+              <span>10M Views &bull; 100% Certified Abigail Classic 🍿✌️</span>
+            </div>
+          </div>
+          <div class="meme-footer"><em>"Smash that like button for 22 more years."</em></div>
+        </div>
+
       </div>
     </section>
 
 
-    <!-- VIRTUAL LOVE LETTER SECTION -->
-    <section id="letter-section" class="section-container">
+    <!-- 16 POLAROID MEMORIES (Dated Chronologically) -->
+    <section id="memories-section" class="section-container">
       <div class="section-header">
-        <span class="section-tag">Straight From The Heart</span>
-        <h2 class="section-heading">A Letter For You</h2>
-        <p class="section-subtext">Sealed with love. Tap the wax seal to break it open.</p>
+        <span class="section-tag">The 16 Photos</span>
+        <h2 class="section-heading">Camera Roll Highlights</h2>
+        <p class="section-subtext">16 favorite moments from February to August 2026, tagged with their exact dates.</p>
       </div>
 
-      <div class="envelope-zone">
-        <div class="envelope-wrapper" id="envelopeWrapper">
-          <div class="envelope" id="envelope">
-            <!-- Envelope Flap & Seal -->
-            <div class="envelope-flap" id="envelopeFlap"></div>
-            <div class="wax-seal" id="waxSeal">
-              <span class="wax-letter">A</span>
-            </div>
-            
-            <div class="envelope-pocket"></div>
-
-            <!-- Letter Paper that slides out -->
-            <div class="letter-paper" id="letterPaper">
-              <div class="letter-inner">
-                <div class="letter-date">September 18, 2026</div>
-                <h3 class="letter-salutation">My Dearest Abigail,</h3>
-                <div class="letter-body">
-                  <p>
-                    Happy 22nd Birthday! As you step into this exciting new year of your life, I wanted to take a moment to remind you of just how deeply loved, valued, and appreciated you are.
-                  </p>
-                  <p>
-                    From the warm way you smile when you are excited, to your boundless empathy and how easy you make it to laugh until our stomachs hurt—you bring so much light and peace into my world. Every single day spent with you is a gift that I never take for granted.
-                  </p>
-                  <p>
-                    May your 22nd year be filled with all the happiness, adventures, cozy mornings, spontaneous trips, and dreams you deserve. I am so lucky to walk beside you, cheering you on every step of the way.
-                  </p>
-                  <p>
-                    Thank you for being my favorite person, my best friend, and my greatest blessing.
-                  </p>
-                </div>
-                <div class="letter-closing">
-                  <p>With all my love, forever & always,</p>
-                  <span class="letter-signature">Jackson</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="envelope-prompt" id="envelopePrompt">
-          <i data-lucide="mouse-pointer-click"></i> Click the wax seal to open
-        </div>
+      <div class="polaroid-gallery" id="polaroidGallery">
+        <!-- 16 Real Photos Rendered Here -->
       </div>
     </section>
 
 
-    <!-- 22 REASONS WHY I LOVE YOU -->
+    <!-- 22 THINGS I LIKE ABOUT HER -->
     <section id="reasons-section" class="section-container">
       <div class="section-header">
-        <span class="section-tag">22 Years, 22 Reasons</span>
-        <h2 class="section-heading">22 Things I Adore About You</h2>
-        <p class="section-subtext">Tap any card to reveal why you mean the world to me. Can you uncover all 22?</p>
+        <span class="section-tag">The 22 List</span>
+        <h2 class="section-heading">22 Things I Love About You</h2>
+        <p class="section-subtext">Tap any card to flip and read. Starting with your favorite morning coffee and contagious smile!</p>
         <div class="reasons-progress-wrap">
           <div class="reasons-progress-bar">
             <div class="reasons-progress-fill" id="reasonsProgress"></div>
@@ -224,186 +278,132 @@
       </div>
 
       <div class="reasons-grid" id="reasonsGrid">
-        <!-- 22 Cards dynamically generated via JavaScript for seamless animation and personalization -->
+        <!-- 22 Cards Generated in script.js -->
       </div>
     </section>
 
 
-    <!-- POLAROID MEMORIES GALLERY -->
-    <section id="memories-section" class="section-container">
+    <!-- INTERACTIVE BIRTHDAY CAKE & MAKE A WISH -->
+    <section id="cake-section" class="section-container">
       <div class="section-header">
-        <span class="section-tag">Snapshots of Us</span>
-        <h2 class="section-heading">Our Favorite Memories</h2>
-        <p class="section-subtext">Little moments frozen in time that mean everything to me.</p>
+        <span class="section-tag">Interactive Wish</span>
+        <h2 class="section-heading">The 22nd Birthday Cake</h2>
+        <p class="section-subtext">Click the candles to blow them out, make your birthday wish, and trigger confetti!</p>
       </div>
 
-      <div class="polaroid-gallery">
-        <!-- Polaroid 1 -->
-        <div class="polaroid tilt-left" data-caption="The sweetest smile in the world 🌸">
-          <div class="tape-sticker"></div>
-          <div class="polaroid-photo">
-            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&auto=format&fit=crop&q=80" alt="Beautiful Moment" loading="lazy" />
+      <div class="cake-stage" id="cakeStage">
+        <div class="cake-container" id="birthdayCake" title="Click to blow out candles!">
+          <div class="candles-wrapper">
+            <div class="candle candle-1">
+              <div class="flame flame-1" id="flame1"><div class="flame-inner"></div></div>
+              <div class="wick"></div>
+              <div class="candle-stick"><span class="candle-number">2</span></div>
+            </div>
+            <div class="candle candle-2">
+              <div class="flame flame-2" id="flame2"><div class="flame-inner"></div></div>
+              <div class="wick"></div>
+              <div class="candle-stick"><span class="candle-number">2</span></div>
+            </div>
           </div>
-          <div class="polaroid-caption">Where it all began &bull; Pure joy</div>
+
+          <div class="cake-layer cake-tier-top">
+            <div class="strawberry-row">🍓 🍓 🍓 🍓 🍓</div>
+          </div>
+          <div class="cake-layer cake-frosting-middle"></div>
+          <div class="cake-layer cake-tier-bottom">
+            <span class="cake-message">Happy 22nd Abigail ✨</span>
+          </div>
+          <div class="cake-plate"></div>
         </div>
 
-        <!-- Polaroid 2 -->
-        <div class="polaroid tilt-right" data-caption="Sunset golden hour with my favorite view 🌅">
-          <div class="tape-sticker"></div>
-          <div class="polaroid-photo">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&auto=format&fit=crop&q=80" alt="Golden Hour" loading="lazy" />
-          </div>
-          <div class="polaroid-caption">Golden hours are better with you ✨</div>
+        <div class="cake-controls">
+          <button class="btn-primary" id="blowCandlesBtn">
+            <i data-lucide="wind"></i>
+            <span id="candleBtnText">Blow Out The Candles!</span>
+          </button>
+          <p class="wish-status-text" id="wishStatusText">Candles are glowing! Click to blow them out.</p>
         </div>
-
-        <!-- Polaroid 3 -->
-        <div class="polaroid tilt-slight-left" data-caption="Coffee dates and endless conversations ☕️">
-          <div class="tape-sticker"></div>
-          <div class="polaroid-photo">
-            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80" alt="Coffee Dates" loading="lazy" />
-          </div>
-          <div class="polaroid-caption">Our cozy morning rituals ☕️</div>
-        </div>
-
-        <!-- Polaroid 4 -->
-        <div class="polaroid tilt-slight-right" data-caption="Dancing under starry skies 🌌">
-          <div class="tape-sticker"></div>
-          <div class="polaroid-photo">
-            <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=800&auto=format&fit=crop&q=80" alt="Starry Sky" loading="lazy" />
-          </div>
-          <div class="polaroid-caption">Late night adventures & stars ✨</div>
-        </div>
-
-        <!-- Polaroid 5 -->
-        <div class="polaroid tilt-left" data-caption="Laughing until we cry 🤍">
-          <div class="tape-sticker"></div>
-          <div class="polaroid-photo">
-            <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&auto=format&fit=crop&q=80" alt="Sweet Laughs" loading="lazy" />
-          </div>
-          <div class="polaroid-caption">My favorite sound in the world 🎵</div>
-        </div>
-
-        <!-- Polaroid 6 -->
-        <div class="polaroid tilt-right" data-caption="Celebrating 22 years of you 🥂">
-          <div class="tape-sticker"></div>
-          <div class="polaroid-photo">
-            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=800&auto=format&fit=crop&q=80" alt="Celebration" loading="lazy" />
-          </div>
-          <div class="polaroid-caption">Here's to your best chapter yet! 🥂</div>
-        </div>
-      </div>
-
-      <div class="photo-hint">
-        <i data-lucide="camera"></i>
-        <span>Tip: You can easily replace these photos with your personal pictures in the <code>assets/images</code> folder!</span>
       </div>
     </section>
 
 
-    <!-- OUR JOURNEY TIMELINE -->
-    <section id="journey-section" class="section-container">
+    <!-- VIRTUAL LOVE LETTER -->
+    <section id="letter-section" class="section-container">
       <div class="section-header">
-        <span class="section-tag">The Story of Us</span>
-        <h2 class="section-heading">Milestones & Chapters</h2>
-        <p class="section-subtext">A journey that only gets better with every passing day.</p>
+        <span class="section-tag">From Jackson</span>
+        <h2 class="section-heading">A Letter Before The Big Day</h2>
+        <p class="section-subtext">Click the wax seal to open your letter.</p>
       </div>
 
-      <div class="timeline-container">
-        <!-- Milestone 1 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <i data-lucide="sparkles"></i>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-date">Chapter 1</span>
-            <h3 class="timeline-title">The First Time We Met</h3>
-            <p class="timeline-desc">The moment that started it all. Who knew that a single conversation would lead to my favorite love story?</p>
+      <div class="envelope-zone">
+        <div class="envelope-wrapper" id="envelopeWrapper">
+          <div class="envelope" id="envelope">
+            <div class="envelope-flap" id="envelopeFlap"></div>
+            <div class="wax-seal" id="waxSeal">
+              <span class="wax-letter">A</span>
+            </div>
+            
+            <div class="letter-paper" id="letterPaper">
+              <div class="letter-inner">
+                <div class="letter-date">September 2026</div>
+                <h3 class="letter-salutation">My Dearest Abigail,</h3>
+                <div class="letter-body">
+                  <p>
+                    I couldn't wait until the 24th to start celebrating you. Every single day leading up to your birthday is worth hyping up because you are genuinely the most wonderful person in my life.
+                  </p>
+                  <p>
+                    Whether we are having our quiet morning coffee together, laughing until our stomachs hurt, bingeing TV shows, or heading out to be social butterflies—there is no one else I would rather share this life with. You bring so much energy, kindness, and light to everyone around you.
+                  </p>
+                  <p>
+                    22 is going to be your biggest and best chapter yet. Keep watching that countdown clock tick down, because when midnight on September 24th arrives, the whole world celebrates you!
+                  </p>
+                </div>
+                <div class="letter-closing">
+                  <p>With all my love,</p>
+                  <span class="letter-signature">Jackson</span>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- Milestone 2 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <i data-lucide="heart"></i>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-date">Chapter 2</span>
-            <h3 class="timeline-title">Our First Official Date</h3>
-            <p class="timeline-desc">Butterflies, laughing over food, and that immediate feeling that you were someone truly special.</p>
-          </div>
-        </div>
-
-        <!-- Milestone 3 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <i data-lucide="map-pin"></i>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-date">Chapter 3</span>
-            <h3 class="timeline-title">Adventures & Road Trips</h3>
-            <p class="timeline-desc">Blasting playlists with the windows down, singing terribly, and exploring new places together.</p>
-          </div>
-        </div>
-
-        <!-- Milestone 4 -->
-        <div class="timeline-item highlight">
-          <div class="timeline-marker">
-            <i data-lucide="cake"></i>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-date">Chapter 4 &bull; Today!</span>
-            <h3 class="timeline-title">Abigail Turns 22 🎉</h3>
-            <p class="timeline-desc">Today we celebrate you, all you have achieved, and the magnificent person you are becoming. 22 looks radiant on you!</p>
-          </div>
-        </div>
-
-        <!-- Milestone 5 -->
-        <div class="timeline-item">
-          <div class="timeline-marker">
-            <i data-lucide="compass"></i>
-          </div>
-          <div class="timeline-card">
-            <span class="timeline-date">Chapter 5</span>
-            <h3 class="timeline-title">All Our Tomorrow's</h3>
-            <p class="timeline-desc">Countless more sunsets, quiet Sundays, new cities, and endless love. The best is yet to come.</p>
-          </div>
+        <div class="envelope-prompt" id="envelopePrompt">
+          <i data-lucide="mouse-pointer-click"></i> Tap the wax seal to read
         </div>
       </div>
     </section>
 
 
-    <!-- WISH JAR SECTION -->
+    <!-- WISH JAR -->
     <section id="wish-jar-section" class="section-container">
       <div class="section-header">
-        <span class="section-tag">Keepsake Box</span>
+        <span class="section-tag">Keepsake</span>
         <h2 class="section-heading">Abigail's 22nd Wish Jar</h2>
-        <p class="section-subtext">Write down your personal dream or wish for year 22. It will be kept safe here forever!</p>
+        <p class="section-subtext">Type a wish for year 22 and save it to the digital stars!</p>
       </div>
 
       <div class="wish-jar-wrapper">
         <div class="wish-jar-card">
           <div class="wish-jar-icon">✨ 🏺 ✨</div>
           <form id="wishForm">
-            <label for="wishInput" class="wish-label">What is your biggest wish for age 22?</label>
-            <textarea id="wishInput" rows="3" placeholder="e.g. Travel to Italy, adopt a puppy, master a new hobby, and laugh endlessly..." required></textarea>
+            <label for="wishInput" class="wish-label">What are you wishing for at 22?</label>
+            <textarea id="wishInput" rows="3" placeholder="Drop your birthday wishes, goals, or dream adventures here..." required></textarea>
             <button type="submit" class="btn-primary" id="saveWishBtn">
               <i data-lucide="send"></i>
               <span>Send Wish Into The Universe</span>
             </button>
           </form>
 
-          <div class="saved-wishes-area" id="savedWishesArea">
-            <!-- Rendered saved wishes -->
-          </div>
+          <div class="saved-wishes-area" id="savedWishesArea"></div>
         </div>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="page-footer">
-      <div class="footer-heart">❤️</div>
-      <p class="footer-text">Crafted with endless love for Abigail on her 22nd Birthday</p>
-      <p class="footer-subtext">Forever & Always &bull; Jackson</p>
+      <div class="footer-heart">💖</div>
+      <p class="footer-text">Counting down to September 24th for Abigail &bull; Made with love by Jackson</p>
       <div class="footer-confetti-btn-wrap">
         <button class="btn-confetti" id="extraConfettiBtn">
           <span>More Confetti! 🎊</span>
@@ -424,7 +424,6 @@
 
   <script src="script.js"></script>
   <script>
-    // Initialize Lucide icons
     lucide.createIcons();
   </script>
 </body>

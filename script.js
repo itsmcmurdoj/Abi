@@ -1,268 +1,382 @@
 /* ==========================================================================
    Abigail's 22nd Birthday - JavaScript Interactions
+   Countdown to Sept 24 Midnight | 16 Photos | Drake Autoplay | Pop Lore
    ========================================================================== */
 
-// 22 Curated Sweet Reasons for 22nd Birthday
+// 16 Photos Data (Chronologically from February to August 2026)
+const photoGalleryData = [
+  { file: "img_9010.jpg", date: "February 05, 2026", caption: "Early 2026 glow ✨" },
+  { file: "img_9114.jpg", date: "February 18, 2026", caption: "Sweet moments with you 🌸" },
+  { file: "img_9122.jpg", date: "February 19, 2026", caption: "That contagious smile 😊" },
+  { file: "img_9141.jpg", date: "February 20, 2026", caption: "Favorite day, favorite person 💖" },
+  { file: "img_9209.jpg", date: "February 26, 2026", caption: "Golden hour memories 🌅" },
+  { file: "img_9333.jpg", date: "March 09, 2026", caption: "March adventures 🌿" },
+  { file: "img_9405.jpg", date: "March 25, 2026", caption: "Laughing at everything 😂" },
+  { file: "img_9512.jpg", date: "March 30, 2026", caption: "Springtime joy 🌷" },
+  { file: "img_0317.jpg", date: "June 10, 2026", caption: "Summer kicking off ☀️" },
+  { file: "img_0564.jpg", date: "July 01, 2026", caption: "July warmth & you 🌊" },
+  { file: "img_0573.jpg", date: "July 02, 2026", caption: "Unforgettable memories 🤍" },
+  { file: "img_0587.jpg", date: "July 02, 2026", caption: "Pure happiness 🥰" },
+  { file: "img_0650.jpg", date: "July 05, 2026", caption: "Summer nights ✨" },
+  { file: "img_0813.jpg", date: "July 19, 2026", caption: "Radiant as ever 🌺" },
+  { file: "img_0858.jpg", date: "July 22, 2026", caption: "My favorite view 🥂" },
+  { file: "img_1046.jpg", date: "August 11, 2026", caption: "August bliss & turning 22 soon! 🎂" }
+];
+
+// 22 Things I Love About You (First 4 explicitly requested by Jackson)
 const reasonsData = [
   {
     num: 1,
-    icon: "✨",
-    title: "Your Radiant Smile",
-    text: "How your whole face lights up whenever you laugh—it genuinely brightens up every single room you walk into."
+    icon: "☕️",
+    title: "Morning Coffee Time",
+    text: "Sharing quiet, peaceful mornings and coffee with you is hands-down my favorite part of any day."
   },
   {
     num: 2,
-    icon: "☕️",
-    title: "Our Morning Routines",
-    text: "The peaceful, cozy mornings sharing coffee, talking about everything and nothing before the day starts."
+    icon: "😊",
+    title: "Your Smile",
+    text: "The way your entire face lights up when you are happy or excited—it makes my whole world brighter."
   },
   {
     num: 3,
-    icon: "🤍",
-    title: "Your Gentle Empathy",
-    text: "The kindness and genuine care you show to every person and animal. Your heart is so purely good."
+    icon: "🫂",
+    title: "Your Supportiveness",
+    text: "How you are always in my corner, cheering me on and believing in me unconditionally."
   },
   {
     num: 4,
-    icon: "😂",
-    title: "Our Inside Jokes",
-    text: "How we can look at each other across a crowded room and instantly start laughing without saying a single word."
+    icon: "🥂",
+    title: "Always Having a Good Time",
+    text: "Your natural ability to light up any room, be the sweetest social butterfly, and make every single outing so fun."
   },
   {
     num: 5,
-    icon: "🚗",
-    title: "Late Night Drives",
-    text: "Singing at the top of our lungs with the windows down, feeling like the world is completely ours."
+    icon: "📺",
+    title: "Our Show Binges",
+    text: "Watching Lost, Paradise, and Limitless together and breaking down every single mystery like detectives."
   },
   {
     num: 6,
-    icon: "🧠",
-    title: "Your Brilliant Mind",
-    text: "How passionate and smart you are when you talk about the things you care about. I love hearing your thoughts."
+    icon: "🍿",
+    title: "The YouTube Brothers",
+    text: "Bingeing that chaotic YouTube brother duo for 5 hours straight in bed with snacks—elite comfort behavior."
   },
   {
     num: 7,
-    icon: "🫂",
-    title: "Your Warmest Hugs",
-    text: "No matter how hectic or stressful life gets, wrapping my arms around you immediately makes everything okay."
+    icon: "💎",
+    title: "Your Sims Energy",
+    text: "Typing 'motherlode' energy into everything you do. Sul Sul! (And promise, no removing pool ladders!)."
   },
   {
     num: 8,
-    icon: "🍕",
-    title: "Food Adventures",
-    text: "Debating for 20 minutes about what to eat, only to try a new spot and savor every bite together."
+    icon: "😂",
+    title: "Our Inside Jokes",
+    text: "How we can exchange a single look from across the room and start hysterically laughing."
   },
   {
     num: 9,
-    icon: "🌟",
-    title: "How Hard You Work",
-    text: "Your dedication, resilience, and ambition to grow and succeed. You inspire me every day."
+    icon: "🚗",
+    title: "Late Night Drives",
+    text: "Windows down, singing terribly at the top of our lungs with the music turned all the way up."
   },
   {
     num: 10,
-    icon: "🎶",
-    title: "Your Taste In Music",
-    text: "Every song you recommend or add to our playlists ends up becoming one of my all-time favorites."
+    icon: "🤍",
+    title: "Your Kind Heart",
+    text: "The genuine empathy, gentleness, and kindness you show toward every single person and animal you meet."
   },
   {
     num: 11,
-    icon: "👀",
-    title: "The Way You Look At Me",
-    text: "That soft, knowing look that makes me feel like the luckiest guy in the entire universe."
+    icon: "🧠",
+    title: "Your Quick Wit",
+    text: "Operating on 100% NZT-48 capacity at all times. You're brilliant, sharp, and always keep me on my toes."
   },
   {
     num: 12,
-    icon: "🏡",
-    title: "Making Anywhere Feel Like Home",
-    text: "Wherever we are—in a car, in another city, or just on the couch—you make me feel completely at home."
+    icon: "📸",
+    title: "Photogenic Queen",
+    text: "Looking through our 16 camera roll highlights and realizing you look effortlessly stunning in literally every single photo."
   },
   {
     num: 13,
-    icon: "🌸",
-    title: "Your Natural Grace",
-    text: "You are breathtakingly gorgeous, effortlessly elegant, and even more stunning on the inside."
+    icon: "🏡",
+    title: "Feeling Like Home",
+    text: "Wherever we are in the world, being next to you feels completely safe, warm, and like home."
   },
   {
     num: 14,
-    icon: "💭",
-    title: "Late Night Conversations",
-    text: "Talking about our wildest dreams, future goals, and childhood memories until 2 AM."
+    icon: "🧁",
+    title: "Your Sweet Tooth",
+    text: "How excited you get over sweet treats, ice cream, and pastries. Seeing you happy is my favorite hobby."
   },
   {
     num: 15,
-    icon: "🧸",
-    title: "Your Playful Side",
-    text: "Your cute little dances in the kitchen and the funny voices you make just to make me smile."
+    icon: "🎶",
+    title: "Your Music Taste",
+    text: "Every track you put on immediately becomes a staple on our daily playlists."
   },
   {
     num: 16,
-    icon: "🛡️",
-    title: "How You Support Me",
-    text: "You are always in my corner, cheering me on and believing in me even when I doubt myself."
+    icon: "💬",
+    title: "2 AM Conversations",
+    text: "Talking about our deepest dreams, childhood memories, and future plans until the middle of the night."
   },
   {
     num: 17,
-    icon: "📸",
-    title: "Every Photo We Take",
-    text: "Looking through our camera roll and realizing that all my happiest memories have you in them."
+    icon: "🧸",
+    title: "Your Playful Side",
+    text: "Your cute little kitchen dances and spontaneous giggles that always turn my bad days into good ones."
   },
   {
     num: 18,
-    icon: "🧁",
-    title: "Your Sweet Tooth",
-    text: "How happy you get over ice cream, pastries, and treats. Seeing you happy is my favorite hobby."
+    icon: "🌟",
+    title: "Your Determination",
+    text: "How hard you work toward your goals and passions. Your drive inspires me every single day."
   },
   {
     num: 19,
-    icon: "🌊",
-    title: "Our Spontaneous Trips",
-    text: "Packing a bag with zero plans and ending up having the greatest adventures together."
+    icon: "🗺️",
+    title: "Every New Adventure",
+    text: "Packing a bag with zero itinerary and still having the most unforgettable time because I'm with you."
   },
   {
     num: 20,
     icon: "🤝",
-    title: "Being My Best Friend",
-    text: "Before anything else, you are the person I trust with my deepest secrets and biggest dreams."
+    title: "My Best Friend",
+    text: "The first person I want to text good news to, and the only person I want to talk to when life gets crazy."
   },
   {
     num: 21,
     icon: "💫",
-    title: "How You Make Me Better",
-    text: "Loving you makes me want to be the best version of myself every single day."
+    title: "Loving You Is Effortless",
+    text: "You make loving you the easiest, most natural, and most rewarding thing in the universe."
   },
   {
     num: 22,
-    icon: "💍",
-    title: "Our Tomorrow's",
-    text: "Because as amazing as these 22 years have been, I can't wait for all the years and memories ahead of us."
+    icon: "🎉",
+    title: "Celebrating 22 With You",
+    text: "Because as incredible as this year has been, I can't wait for all the years, birthdays, and memories still to come."
   }
 ];
 
-// State tracking
+// Target Birthday: September 24, 2026 at Midnight (00:00:00)
+const birthdayTarget = new Date(2026, 8, 24, 0, 0, 0).getTime();
+
+let countdownInterval = null;
+let birthdayCelebrated = false;
 let candlesBlown = false;
-let flippedCardsCount = 0;
 const flippedCardSet = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
-  initSparkleCanvas();
+  initAudioPlayer();
+  initCountdown();
+  renderPolaroidGallery();
   renderReasonsGrid();
   initCake();
   initEnvelope();
   initWishJar();
-  initMusicPlayer();
+  initSparkleCanvas();
   initLightbox();
-  initConfettiButtons();
+  initMemeEasterEggs();
 });
 
 /* ==========================================================================
-   Interactive Birthday Cake & Candles
+   Audio Autoplay Handler (Drake - Ratchet Happy Birthday)
    ========================================================================== */
-function initCake() {
-  const cake = document.getElementById("birthdayCake");
-  const blowBtn = document.getElementById("blowCandlesBtn");
-  const candleBtnText = document.getElementById("candleBtnText");
-  const flame1 = document.getElementById("flame1");
-  const flame2 = document.getElementById("flame2");
-  const wishStatusText = document.getElementById("wishStatusText");
+function initAudioPlayer() {
+  const audio = document.getElementById("birthdayAudio");
+  const banner = document.getElementById("autoplayBanner");
+  const bannerBtn = document.getElementById("bannerPlayBtn");
+  const musicToggle = document.getElementById("musicToggle");
+  const vinylDisc = document.getElementById("vinylDisc");
+  const musicStatus = document.getElementById("musicStatus");
 
-  function blowCandles() {
-    if (candlesBlown) {
-      // Re-light candles
-      candlesBlown = false;
-      flame1.classList.remove("extinguished");
-      flame2.classList.remove("extinguished");
-      candleBtnText.textContent = "Blow Out The Candles!";
-      wishStatusText.textContent = "Candles are glowing! Tap above to make your wish.";
-      return;
+  if (!audio) return;
+
+  function markPlaying() {
+    vinylDisc.classList.add("playing");
+    musicStatus.textContent = "Playing 🦉🎶";
+    if (banner) banner.classList.add("dismissed");
+  }
+
+  function markPaused() {
+    vinylDisc.classList.remove("playing");
+    musicStatus.textContent = "Paused ⏸️";
+  }
+
+  // Attempt autoplay immediately
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        markPlaying();
+      })
+      .catch(() => {
+        // Autoplay was prevented by browser policy, wait for first user interaction
+        markPaused();
+        if (banner) banner.classList.remove("dismissed");
+      });
+  }
+
+  // First touch or click anywhere will start audio if blocked
+  function unlockAudio() {
+    if (audio.paused) {
+      audio.play().then(markPlaying).catch(() => {});
     }
-
-    candlesBlown = true;
-    flame1.classList.add("extinguished");
-    flame2.classList.add("extinguished");
-    candleBtnText.textContent = "Relight Candles 🕯️";
-    wishStatusText.textContent = "✨ Happy 22nd Birthday Abigail! May all your wishes come true! ✨";
-
-    playChimeSound();
-    fireCelebrationConfetti();
   }
 
-  if (cake) cake.addEventListener("click", blowCandles);
-  if (blowBtn) blowBtn.addEventListener("click", blowCandles);
-}
+  window.addEventListener("click", unlockAudio, { once: true });
+  window.addEventListener("touchstart", unlockAudio, { once: true });
 
-/* Confetti Burst */
-function fireCelebrationConfetti() {
-  if (typeof confetti !== "function") return;
-
-  const count = 200;
-  const defaults = {
-    origin: { y: 0.7 }
-  };
-
-  function fire(particleRatio, opts) {
-    confetti(Object.assign({}, defaults, opts, {
-      particleCount: Math.floor(count * particleRatio)
-    }));
+  if (bannerBtn) {
+    bannerBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      audio.play().then(markPlaying).catch(() => {});
+    });
   }
 
-  fire(0.25, {
-    spread: 26,
-    startVelocity: 55,
-    colors: ['#ff8fa3', '#e0838a', '#ffd166', '#ffffff']
-  });
-  fire(0.2, {
-    spread: 60,
-    colors: ['#ffb3c1', '#fdf0d5', '#ff4d6d']
-  });
-  fire(0.35, {
-    spread: 100,
-    decay: 0.91,
-    scalar: 0.8
-  });
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 25,
-    decay: 0.92,
-    scalar: 1.2
-  });
-  fire(0.1, {
-    spread: 120,
-    startVelocity: 45,
-  });
+  if (musicToggle) {
+    musicToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (audio.paused) {
+        audio.play().then(markPlaying).catch(() => {});
+      } else {
+        audio.pause();
+        markPaused();
+      }
+    });
+  }
 }
 
 /* ==========================================================================
-   Virtual Love Letter & Envelope
+   Big Birthday Countdown Timer
    ========================================================================== */
-function initEnvelope() {
-  const envelope = document.getElementById("envelope");
-  const waxSeal = document.getElementById("waxSeal");
-  const prompt = document.getElementById("envelopePrompt");
+function initCountdown() {
+  const cdDays = document.getElementById("cdDays");
+  const cdHours = document.getElementById("cdHours");
+  const cdMinutes = document.getElementById("cdMinutes");
+  const cdSeconds = document.getElementById("cdSeconds");
+  const unlockedBanner = document.getElementById("birthdayUnlockedBanner");
+  const previewZeroBtn = document.getElementById("previewZeroBtn");
 
-  function openEnvelope() {
-    if (envelope.classList.contains("open")) return;
-    
-    envelope.classList.add("open");
-    waxSeal.classList.add("broken");
-    if (prompt) {
-      prompt.innerHTML = `<i data-lucide="heart"></i> Written with love for Abigail`;
-      lucide.createIcons();
+  function updateClock() {
+    const now = new Date().getTime();
+    const distance = birthdayTarget - now;
+
+    if (distance <= 0) {
+      // Countdown finished!
+      if (cdDays) cdDays.textContent = "00";
+      if (cdHours) cdHours.textContent = "00";
+      if (cdMinutes) cdMinutes.textContent = "00";
+      if (cdSeconds) cdSeconds.textContent = "00";
+
+      if (!birthdayCelebrated) {
+        triggerBirthdayCelebration();
+      }
+      return;
     }
-    
-    playSoftChime();
-    
-    if (typeof confetti === "function") {
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ['#fbe6e9', '#d96b79', '#dfa856']
-      });
-    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    if (cdDays) cdDays.textContent = String(days).padStart(2, "0");
+    if (cdHours) cdHours.textContent = String(hours).padStart(2, "0");
+    if (cdMinutes) cdMinutes.textContent = String(minutes).padStart(2, "0");
+    if (cdSeconds) cdSeconds.textContent = String(seconds).padStart(2, "0");
   }
 
-  if (waxSeal) waxSeal.addEventListener("click", openEnvelope);
-  if (envelope) envelope.addEventListener("click", openEnvelope);
+  updateClock();
+  countdownInterval = setInterval(updateClock, 1000);
+
+  // Preview button so Jackson can test the exact confetti moment right now!
+  if (previewZeroBtn) {
+    previewZeroBtn.addEventListener("click", () => {
+      triggerBirthdayCelebration();
+    });
+  }
+}
+
+function triggerBirthdayCelebration() {
+  birthdayCelebrated = true;
+  const unlockedBanner = document.getElementById("birthdayUnlockedBanner");
+  if (unlockedBanner) unlockedBanner.style.display = "block";
+
+  // Massive celebration confetti showers
+  fireCelebrationConfetti(true);
+
+  // Scroll banner into view smoothly
+  if (unlockedBanner) {
+    unlockedBanner.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+/* Confetti System */
+function fireCelebrationConfetti(isSuper = false) {
+  if (typeof confetti !== "function") return;
+
+  const count = isSuper ? 400 : 180;
+  const duration = isSuper ? 4000 : 1500;
+  const animationEnd = Date.now() + duration;
+
+  const interval = setInterval(() => {
+    const timeLeft = animationEnd - Date.now();
+    if (timeLeft <= 0) {
+      return clearInterval(interval);
+    }
+    const particleCount = 50 * (timeLeft / duration);
+
+    // Blast from left
+    confetti({
+      particleCount,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0, y: 0.7 },
+      colors: ['#ff4d6d', '#ffd166', '#2ecc71', '#3a86ff', '#ffffff']
+    });
+    // Blast from right
+    confetti({
+      particleCount,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1, y: 0.7 },
+      colors: ['#ff4d6d', '#ffd166', '#2ecc71', '#3a86ff', '#ffffff']
+    });
+  }, 250);
+}
+
+/* ==========================================================================
+   Render 16 Dated Polaroid Photos
+   ========================================================================== */
+function renderPolaroidGallery() {
+  const gallery = document.getElementById("polaroidGallery");
+  if (!gallery) return;
+
+  gallery.innerHTML = "";
+
+  const tiltClasses = ["tilt-1", "tilt-2", "tilt-3", "tilt-4", "tilt-5", "tilt-6"];
+
+  photoGalleryData.forEach((item, index) => {
+    const tilt = tiltClasses[index % tiltClasses.length];
+    const polaroid = document.createElement("div");
+    polaroid.className = `polaroid ${tilt}`;
+    polaroid.setAttribute("data-src", `assets/images/${item.file}`);
+    polaroid.setAttribute("data-caption", `${item.caption} &bull; ${item.date}`);
+
+    polaroid.innerHTML = `
+      <div class="tape-sticker"></div>
+      <div class="polaroid-photo">
+        <img src="assets/images/${item.file}" alt="Memory ${index + 1}" loading="lazy" />
+      </div>
+      <div class="polaroid-meta">
+        <span class="polaroid-date-tag">${item.date}</span>
+        <span class="polaroid-caption">${item.caption}</span>
+      </div>
+    `;
+
+    gallery.appendChild(polaroid);
+  });
 }
 
 /* ==========================================================================
@@ -274,7 +388,6 @@ function renderReasonsGrid() {
   const counterText = document.getElementById("reasonsCounter");
 
   if (!grid) return;
-
   grid.innerHTML = "";
 
   reasonsData.forEach((item) => {
@@ -282,7 +395,6 @@ function renderReasonsGrid() {
     card.className = "reason-card";
     card.setAttribute("role", "button");
     card.setAttribute("tabindex", "0");
-    card.setAttribute("aria-label", `Reason #${item.num}: ${item.title}`);
 
     card.innerHTML = `
       <div class="card-inner">
@@ -299,17 +411,16 @@ function renderReasonsGrid() {
 
     card.addEventListener("click", () => {
       card.classList.toggle("flipped");
-      
+
       if (!flippedCardSet.has(item.num)) {
         flippedCardSet.add(item.num);
-        flippedCardsCount = flippedCardSet.size;
-        
-        const percentage = Math.round((flippedCardsCount / 22) * 100);
-        if (progressFill) progressFill.style.width = `${percentage}%`;
-        if (counterText) counterText.textContent = `${flippedCardsCount} / 22 Revealed`;
+        const count = flippedCardSet.size;
+        const pct = Math.round((count / 22) * 100);
+        if (progressFill) progressFill.style.width = `${pct}%`;
+        if (counterText) counterText.textContent = `${count} / 22 Revealed`;
 
-        if (flippedCardsCount === 22) {
-          fireCelebrationConfetti();
+        if (count === 22) {
+          fireCelebrationConfetti(true);
         }
       }
     });
@@ -319,14 +430,70 @@ function renderReasonsGrid() {
 }
 
 /* ==========================================================================
-   Wish Jar Section
+   Cake & Candles
+   ========================================================================== */
+function initCake() {
+  const cake = document.getElementById("birthdayCake");
+  const blowBtn = document.getElementById("blowCandlesBtn");
+  const candleBtnText = document.getElementById("candleBtnText");
+  const flame1 = document.getElementById("flame1");
+  const flame2 = document.getElementById("flame2");
+  const wishStatusText = document.getElementById("wishStatusText");
+
+  function blowCandles() {
+    if (candlesBlown) {
+      candlesBlown = false;
+      flame1.classList.remove("extinguished");
+      flame2.classList.remove("extinguished");
+      candleBtnText.textContent = "Blow Out The Candles!";
+      wishStatusText.textContent = "Candles are glowing! Click to blow them out.";
+      return;
+    }
+
+    candlesBlown = true;
+    flame1.classList.add("extinguished");
+    flame2.classList.add("extinguished");
+    candleBtnText.textContent = "Relight Candles 🕯️";
+    wishStatusText.textContent = "✨ Happy 22nd Birthday Abigail! Wish sent into the stars! ✨";
+
+    fireCelebrationConfetti(false);
+  }
+
+  if (cake) cake.addEventListener("click", blowCandles);
+  if (blowBtn) blowBtn.addEventListener("click", blowCandles);
+}
+
+/* ==========================================================================
+   Envelope & Love Letter
+   ========================================================================== */
+function initEnvelope() {
+  const envelope = document.getElementById("envelope");
+  const waxSeal = document.getElementById("waxSeal");
+  const prompt = document.getElementById("envelopePrompt");
+
+  function openEnvelope() {
+    if (envelope.classList.contains("open")) return;
+    envelope.classList.add("open");
+    waxSeal.classList.add("broken");
+    if (prompt) {
+      prompt.innerHTML = `<i data-lucide="heart"></i> Written with all my love for Abigail`;
+      lucide.createIcons();
+    }
+    fireCelebrationConfetti(false);
+  }
+
+  if (waxSeal) waxSeal.addEventListener("click", openEnvelope);
+  if (envelope) envelope.addEventListener("click", openEnvelope);
+}
+
+/* ==========================================================================
+   Wish Jar
    ========================================================================== */
 function initWishJar() {
   const wishForm = document.getElementById("wishForm");
   const wishInput = document.getElementById("wishInput");
   const savedArea = document.getElementById("savedWishesArea");
-
-  const storageKey = "abigails_birthday_wishes";
+  const storageKey = "abigails_22nd_birthday_wishes";
 
   function loadWishes() {
     if (!savedArea) return;
@@ -343,7 +510,7 @@ function initWishJar() {
         savedArea.appendChild(div);
       });
     } catch (e) {
-      console.warn("Storage access restricted", e);
+      console.warn(e);
     }
   }
 
@@ -368,7 +535,7 @@ function initWishJar() {
 
       wishInput.value = "";
       loadWishes();
-      fireCelebrationConfetti();
+      fireCelebrationConfetti(false);
     });
   }
 
@@ -382,110 +549,27 @@ function escapeHtml(text) {
 }
 
 /* ==========================================================================
-   Ambient Audio Synthesizer (Zero External Dependencies)
+   Pop-Culture Lore & Easter Eggs (Lost, Sims, etc.)
    ========================================================================== */
-let audioCtx = null;
-let isPlayingMelody = false;
-let melodyInterval = null;
-
-function initMusicPlayer() {
-  const toggleBtn = document.getElementById("musicToggle");
-  const vinylDisc = document.getElementById("vinylDisc");
-  const statusText = document.getElementById("musicStatus");
-
-  if (!toggleBtn) return;
-
-  toggleBtn.addEventListener("click", () => {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-
-    if (audioCtx.state === "suspended") {
-      audioCtx.resume();
-    }
-
-    if (isPlayingMelody) {
-      stopMelody();
-      vinylDisc.classList.remove("playing");
-      statusText.textContent = "Click to play ✨";
-      isPlayingMelody = false;
-    } else {
-      startMelody();
-      vinylDisc.classList.add("playing");
-      statusText.textContent = "Playing melody 🎵";
-      isPlayingMelody = true;
-    }
-  });
-}
-
-// Gentle romantic arpeggio notes (F frequencies)
-const notes = [
-  261.63, 329.63, 392.00, 523.25, // C chord
-  293.66, 369.99, 440.00, 587.33, // D chord
-  220.00, 261.63, 329.63, 440.00, // Am chord
-  174.61, 220.00, 261.63, 349.23  // F chord
-];
-
-let noteIndex = 0;
-
-function startMelody() {
-  if (!audioCtx) return;
-  
-  melodyInterval = setInterval(() => {
-    playNote(notes[noteIndex % notes.length]);
-    noteIndex++;
-  }, 480);
-}
-
-function stopMelody() {
-  if (melodyInterval) {
-    clearInterval(melodyInterval);
-    melodyInterval = null;
+function initMemeEasterEggs() {
+  const lostBtn = document.getElementById("lostExecuteBtn");
+  if (lostBtn) {
+    lostBtn.addEventListener("click", () => {
+      alert("⚠️ PROTOCOL 4, 8, 15, 16, 23, 42 ENTERED!\n\nTimer reset: 108 more minutes of hyping up Abigail! WE HAVE TO GO BACK TO THE BIRTHDAY!");
+      fireCelebrationConfetti(false);
+    });
   }
-}
 
-function playNote(freq) {
-  if (!audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
-    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.6);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 1.6);
-  } catch (e) {
-    // Audio context not allowed yet
+  const extraBtn = document.getElementById("extraConfettiBtn");
+  if (extraBtn) {
+    extraBtn.addEventListener("click", () => {
+      fireCelebrationConfetti(true);
+    });
   }
-}
-
-function playChimeSound() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
-    setTimeout(() => playNote(freq), i * 140);
-  });
-}
-
-function playSoftChime() {
-  if (!audioCtx) {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  }
-  [440.00, 554.37, 659.25].forEach((freq, i) => {
-    setTimeout(() => playNote(freq), i * 160);
-  });
 }
 
 /* ==========================================================================
-   Sparkles Background Canvas
+   Sparkle Canvas
    ========================================================================== */
 function initSparkleCanvas() {
   const canvas = document.getElementById("sparkle-canvas");
@@ -500,11 +584,11 @@ function initSparkleCanvas() {
     height = canvas.height = window.innerHeight;
   });
 
-  const sparkles = Array.from({ length: 45 }, () => ({
+  const sparkles = Array.from({ length: 40 }, () => ({
     x: Math.random() * width,
     y: Math.random() * height,
     size: Math.random() * 2.5 + 1,
-    speedY: Math.random() * 0.4 + 0.1,
+    speedY: Math.random() * 0.35 + 0.1,
     opacity: Math.random() * 0.7 + 0.2,
     flicker: Math.random() * 0.02 + 0.005
   }));
@@ -521,9 +605,9 @@ function initSparkleCanvas() {
 
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(235, 140, 155, ${Math.max(0, s.opacity)})`;
-      ctx.shadowBlur = 8;
-      ctx.shadowColor = "rgba(255, 190, 200, 0.5)";
+      ctx.fillStyle = `rgba(235, 120, 140, ${Math.max(0, s.opacity)})`;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = "rgba(255, 180, 195, 0.4)";
       ctx.fill();
     });
 
@@ -544,17 +628,16 @@ function initLightbox() {
 
   if (!lightbox) return;
 
-  document.querySelectorAll(".polaroid").forEach((item) => {
-    item.addEventListener("click", () => {
-      const img = item.querySelector("img");
-      const caption = item.getAttribute("data-caption") || item.querySelector(".polaroid-caption").textContent;
+  document.addEventListener("click", (e) => {
+    const polaroid = e.target.closest(".polaroid");
+    if (polaroid) {
+      const src = polaroid.getAttribute("data-src") || polaroid.querySelector("img").src;
+      const caption = polaroid.getAttribute("data-caption") || "";
 
-      if (img) {
-        lightboxImg.src = img.src;
-        lightboxCaption.textContent = caption;
-        lightbox.classList.add("active");
-      }
-    });
+      lightboxImg.src = src;
+      lightboxCaption.innerHTML = caption;
+      lightbox.classList.add("active");
+    }
   });
 
   function closeLightbox() {
@@ -565,14 +648,4 @@ function initLightbox() {
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) closeLightbox();
   });
-}
-
-/* Extra Confetti Button */
-function initConfettiButtons() {
-  const extraBtn = document.getElementById("extraConfettiBtn");
-  if (extraBtn) {
-    extraBtn.addEventListener("click", () => {
-      fireCelebrationConfetti();
-    });
-  }
 }
