@@ -1,0 +1,1146 @@
+/* ==========================================================================
+   Abigail's 22nd Birthday - Stylesheet
+   Aesthetic: Romantic Blush, Rose Gold, Warm Champagne & Modern Glassmorphism
+   ========================================================================== */
+
+:root {
+  --bg-gradient: linear-gradient(135deg, #fff6f6 0%, #fdf0f2 50%, #fbf3ec 100%);
+  --card-bg: rgba(255, 255, 255, 0.78);
+  --card-border: rgba(230, 190, 195, 0.35);
+  --primary-rose: #d96b79;
+  --rose-dark: #b84f5d;
+  --rose-light: #fbe6e9;
+  --champagne: #e8c4a2;
+  --gold: #dfa856;
+  --text-dark: #2d2627;
+  --text-muted: #746467;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-script: 'Alex Brush', cursive;
+  --shadow-soft: 0 10px 30px -5px rgba(217, 107, 121, 0.12), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 20px 40px -10px rgba(184, 79, 93, 0.2);
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 8px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-dark);
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+/* Background Canvas for Interactive Sparkles */
+#sparkle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Navigation Bar */
+.nav-glass {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  padding: 10px 24px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  box-shadow: var(--shadow-soft);
+  max-width: 90%;
+}
+
+.nav-logo {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--primary-rose);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 18px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: var(--primary-rose);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .nav-glass {
+    top: 10px;
+    padding: 8px 16px;
+    gap: 12px;
+  }
+  .nav-links {
+    display: none; /* Keep clean on small mobile */
+  }
+}
+
+/* Floating Music Player Widget */
+.music-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+}
+
+.music-btn {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 8px 16px 8px 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.music-btn:hover {
+  transform: scale(1.04);
+  box-shadow: var(--shadow-elevated);
+}
+
+.vinyl-disc {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #2d2627 30%, #4a3d40 60%, #1a1617 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s linear;
+}
+
+.vinyl-disc.playing {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.music-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.music-status {
+  font-size: 0.7rem;
+  color: var(--primary-rose);
+}
+
+/* Main Layout */
+.page-wrap {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 110px 20px 80px;
+}
+
+/* Section Common Styling */
+.section-container {
+  margin-bottom: 120px;
+  scroll-margin-top: 100px;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: var(--primary-rose);
+  background: var(--rose-light);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.section-subtext {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 70px 10px 100px;
+  position: relative;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--card-border);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.highlight-name {
+  background: linear-gradient(120deg, #b84f5d, #e0838a 60%, #dfa856);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  max-width: 660px;
+  margin: 0 auto 36px;
+  color: var(--text-muted);
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-rose), var(--rose-dark));
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -4px rgba(217, 107, 121, 0.4);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(217, 107, 121, 0.55);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--text-dark);
+  border: 1px solid var(--card-border);
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  color: var(--primary-rose);
+}
+
+/* Floating Emoji Bubbles */
+.floating-bubble {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: floatAround 6s ease-in-out infinite alternate;
+}
+
+.bubble-1 { top: 10%; left: 8%; animation-delay: 0s; }
+.bubble-2 { top: 25%; right: 10%; animation-delay: 1.5s; }
+.bubble-3 { bottom: 15%; left: 12%; animation-delay: 3s; font-size: 2.2rem; }
+.bubble-4 { bottom: 20%; right: 14%; animation-delay: 2s; }
+.bubble-5 { top: 5%; right: 28%; animation-delay: 4s; }
+
+@keyframes floatAround {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-20px) rotate(8deg); }
+}
+
+/* ==========================================================================
+   Interactive Birthday Cake
+   ========================================================================== */
+.cake-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 50px 20px 40px;
+  box-shadow: var(--shadow-soft);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cake-container {
+  position: relative;
+  width: 280px;
+  height: 240px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.cake-container:hover {
+  transform: scale(1.03);
+}
+
+/* Candles & Flames */
+.candles-wrapper {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 2px;
+  position: relative;
+  z-index: 10;
+}
+
+.candle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.flame {
+  width: 18px;
+  height: 28px;
+  background: radial-gradient(ellipse at bottom, #fffa7a 20%, #ff8c00 60%, transparent 95%);
+  border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+  position: relative;
+  filter: drop-shadow(0 0 10px rgba(255, 170, 0, 0.8));
+  animation: flicker 0.15s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.flame-inner {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.flame.extinguished {
+  opacity: 0;
+  transform: scale(0.1) translateY(-10px);
+}
+
+@keyframes flicker {
+  0% { transform: scale(1) rotate(-2deg); }
+  100% { transform: scale(1.08) rotate(2deg); }
+}
+
+.wick {
+  width: 3px;
+  height: 8px;
+  background: #4a3d40;
+  border-radius: 2px;
+}
+
+.candle-stick {
+  width: 24px;
+  height: 52px;
+  background: repeating-linear-gradient(
+    45deg,
+    #fad2e1,
+    #fad2e1 6px,
+    #ffffff 6px,
+    #ffffff 12px
+  );
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.candle-number {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--rose-dark);
+}
+
+/* Cake Layers */
+.cake-layer {
+  width: 100%;
+  position: relative;
+}
+
+.cake-tier-top {
+  width: 190px;
+  height: 48px;
+  background: #fff2f2;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(220, 160, 170, 0.4);
+  border-bottom: none;
+}
+
+.strawberry-row {
+  font-size: 1.1rem;
+  letter-spacing: 4px;
+}
+
+.cake-frosting-middle {
+  width: 200px;
+  height: 8px;
+  background: #f7a8b8;
+  border-radius: 4px;
+  margin-top: -2px;
+}
+
+.cake-tier-bottom {
+  width: 240px;
+  height: 64px;
+  background: linear-gradient(to bottom, #fff5f5, #fae1e5);
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(220, 160, 170, 0.4);
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.cake-message {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  color: var(--rose-dark);
+  letter-spacing: 1px;
+}
+
+.cake-plate {
+  width: 270px;
+  height: 12px;
+  background: linear-gradient(to bottom, #eaeaea, #cccccc);
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.cake-controls {
+  text-align: center;
+}
+
+.wish-status-text {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Virtual Love Letter & Envelope
+   ========================================================================== */
+.envelope-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  perspective: 1200px;
+  margin-bottom: 20px;
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  background: #fdf5eb;
+  border-radius: 16px;
+  border: 1px solid #ebd0be;
+  box-shadow: 0 20px 45px -10px rgba(160, 100, 70, 0.2);
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.envelope:hover {
+  transform: translateY(-4px);
+}
+
+/* Wax Seal */
+.wax-seal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  background: radial-gradient(circle, #b83d47 0%, #871c26 80%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(100, 20, 30, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+  z-index: 20;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wax-letter {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffdfba;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.wax-seal.broken {
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Letter Paper */
+.letter-paper {
+  width: 90%;
+  background: #fffdfa;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px 36px;
+  border: 1px solid rgba(220, 190, 170, 0.35);
+  margin: 20px auto;
+  opacity: 0.4;
+  transform: translateY(20px) scale(0.95);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.envelope.open .letter-paper {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.letter-inner {
+  font-family: var(--font-serif);
+}
+
+.letter-date {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-bottom: 18px;
+}
+
+.letter-salutation {
+  font-size: 1.5rem;
+  color: var(--rose-dark);
+  margin-bottom: 20px;
+}
+
+.letter-body p {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  color: #4a3e40;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.letter-closing {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.letter-closing p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.letter-signature {
+  font-family: var(--font-script);
+  font-size: 2.4rem;
+  color: var(--rose-dark);
+  display: inline-block;
+  margin-top: 6px;
+}
+
+.envelope-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   22 Reasons Why I Love You (Card Grid)
+   ========================================================================== */
+.reasons-progress-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.reasons-progress-bar {
+  width: 220px;
+  height: 8px;
+  background: rgba(217, 107, 121, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.reasons-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-rose), var(--gold));
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.reasons-counter {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+}
+
+.reasons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.reason-card {
+  perspective: 1000px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.reason-card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--radius-md);
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-front {
+  background: var(--card-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--card-border);
+}
+
+.reason-number {
+  position: absolute;
+  top: 12px;
+  left: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-rose);
+  background: var(--rose-light);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.reason-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.reason-preview-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-dark);
+}
+
+.card-back {
+  background: linear-gradient(135deg, #fff0f2 0%, #fae1e5 100%);
+  border: 1px solid rgba(220, 150, 160, 0.5);
+  transform: rotateY(180deg);
+  overflow-y: auto;
+}
+
+.card-back p {
+  font-size: 0.95rem;
+  color: #3b2c2f;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Polaroid Memory Wall
+   ========================================================================== */
+.polaroid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 36px 28px;
+  padding: 20px 0;
+}
+
+.polaroid {
+  background: #ffffff;
+  padding: 14px 14px 22px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.tilt-left { transform: rotate(-3deg); }
+.tilt-right { transform: rotate(3deg); }
+.tilt-slight-left { transform: rotate(-1.5deg); }
+.tilt-slight-right { transform: rotate(1.5deg); }
+
+.tape-sticker {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 22px;
+  background: rgba(255, 248, 220, 0.7);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(2px);
+}
+
+.polaroid-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #eee;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-bottom: 14px;
+}
+
+.polaroid-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.polaroid:hover .polaroid-photo img {
+  transform: scale(1.06);
+}
+
+.polaroid-caption {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: #4a3e40;
+  text-align: center;
+  font-style: italic;
+}
+
+.photo-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 30px;
+}
+
+.photo-hint code {
+  background: var(--rose-light);
+  color: var(--rose-dark);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   Our Journey Timeline
+   ========================================================================== */
+.timeline-container {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary-rose), var(--champagne));
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.timeline-marker {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid var(--primary-rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-rose);
+  box-shadow: 0 4px 12px rgba(217, 107, 121, 0.25);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.timeline-item.highlight .timeline-marker {
+  background: var(--primary-rose);
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(217, 107, 121, 0.6);
+}
+
+.timeline-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-soft);
+  flex-grow: 1;
+}
+
+.timeline-date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-rose);
+  letter-spacing: 1px;
+}
+
+.timeline-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin: 4px 0 8px;
+  color: var(--text-dark);
+}
+
+.timeline-desc {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Wish Jar Section
+   ========================================================================== */
+.wish-jar-wrapper {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.wish-jar-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 40px 30px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.wish-jar-icon {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+}
+
+.wish-label {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-dark);
+}
+
+#wishInput {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--card-border);
+  padding: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  resize: none;
+  background: rgba(255, 255, 255, 0.9);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+#wishInput:focus {
+  border-color: var(--primary-rose);
+  box-shadow: 0 0 0 3px rgba(217, 107, 121, 0.15);
+}
+
+.saved-wishes-area {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.saved-wish-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-left: 4px solid var(--primary-rose);
+  padding: 12px 16px;
+  border-radius: 4px;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #3b2c2f;
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 60px 20px 40px;
+  border-top: 1px solid var(--card-border);
+}
+
+.footer-heart {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.footer-text {
+  font-size: 1rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.footer-subtext {
+  font-family: var(--font-script);
+  font-size: 1.8rem;
+  color: var(--rose-dark);
+  margin-top: 4px;
+}
+
+.footer-confetti-btn-wrap {
+  margin-top: 24px;
+}
+
+.btn-confetti {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid var(--card-border);
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+  transition: all 0.2s ease;
+}
+
+.btn-confetti:hover {
+  background: var(--primary-rose);
+  color: #fff;
+}
+
+/* Lightbox Modal */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 85%;
+  text-align: center;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 75vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+#lightboxCaption {
+  color: #ffffff;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  margin-top: 14px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .section-heading {
+    font-size: 2rem;
+  }
+  .reasons-grid {
+    grid-template-columns: 1fr;
+  }
+}
