@@ -294,11 +294,57 @@ function initCountdown() {
   updateClock();
   countdownInterval = setInterval(updateClock, 1000);
 
-  // Preview button so Jackson can test the exact confetti moment right now!
+  // Prank button: "haha got u bean u gotta wait pal"
   if (previewZeroBtn) {
     previewZeroBtn.addEventListener("click", () => {
-      triggerBirthdayCelebration();
+      showPrankErrorModal();
     });
+  }
+}
+
+function showPrankErrorModal() {
+  const modal = document.getElementById("prankModal");
+  const closeBtn = document.getElementById("prankCloseBtn");
+
+  playBuzzerSound();
+
+  if (modal) {
+    modal.classList.add("active");
+
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        modal.classList.remove("active");
+      };
+    }
+
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("active");
+      }
+    };
+  }
+}
+
+function playBuzzerSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sawtooth";
+    osc.frequency.setValueAtTime(140, ctx.currentTime);
+    osc.frequency.setValueAtTime(110, ctx.currentTime + 0.15);
+
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.35);
+  } catch (e) {
+    // AudioContext not permitted yet
   }
 }
 
